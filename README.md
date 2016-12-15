@@ -1,2 +1,2 @@
 # shelf
-A comic collection tool
+A comic database and collection management tool
