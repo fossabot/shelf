@@ -61,11 +61,12 @@ main
 	display: flex
 	flex-direction: column
 	justify-content: space-around
-	margin-top: header-height + .5rem
+	margin: header-height 0
+	padding-top: .5rem
 
 section
 	.section-header
-		padding-left: .5rem
+		padding-left: 1rem
 		h2
 			font-size: .75rem
 			color: grey-text
@@ -76,8 +77,10 @@ section
 			margin: .5rem
 			font-size: .625rem
 			color: grey-text
-			// width: 30vw
-			// max-width: 20rem
+			&:first-of-type
+				margin-left: 1rem
+			&:last-of-type
+				margin-right: 1rem
 			.issue-cover
 				width: 30vw
 				max-width: 13rem
@@ -89,6 +92,8 @@ section
 				line-height: 1.6em
 			.issue-title
 				font-weight: 600
+			.issue-date
+				font-style: italic
 
 
 footer
