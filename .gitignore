@@ -1,1 +1,4 @@
 dbCredentials.php
+.ftpconfig
+node_modules/
+generateHomepage.js

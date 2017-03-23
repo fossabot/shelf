@@ -1,0 +1,6 @@
+<footer>
+	<p id="login" class="button">Log In</p>
+	<p id="signup" class="button">Sign Up</p>
+</footer>
+</body>
+</html>
