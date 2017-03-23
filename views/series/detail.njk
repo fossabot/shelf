@@ -1,0 +1,15 @@
+{% extends '_skeletons/page.njk' %}
+
+{% block content %}
+	<h2>{{ page.title }}</h2>
+	<ul class="issues">
+		{% for issue in issues %}
+			<li>
+				<a href="/series/{{ series.slug }}/vol/{{ issue.series.volume }}/{{ issue.number }}">
+					<span class="number">#{{ issue.number }}</span>
+					<span class="date">Published <span class="isoDate">{{ issue.publicationDate }}</span></span>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

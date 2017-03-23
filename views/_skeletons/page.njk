@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+{% include "_partials/head.njk" %}
+<body>
+{% include "_partials/header.njk" %}
+{% block content %}{% endblock %}
+{% include "_partials/footer.njk" %}
+<script type="text/javascript">{% block customJS %}{% endblock %}</script>
+</body>
+</html>
