@@ -4,7 +4,7 @@
 	<h2>{{ page.title }}</h2>
 	<p>
 		<strong>Series: </strong>
-		<span>{{ issue.series.title }}</span>
+		<span>{{ issue.series.title }} Vol. {{ issue.series.volume }}</span>
 	</p>
 	<p>
 		<strong>Number: </strong>
@@ -16,9 +16,8 @@
 	</p>
 	<p>
 		<strong>Creative Team: </strong>
-		{{ issue.team | length }}
-		{% for person in issue.team %}
-			<span>{{ person.name.first }} {{ person.name.last }}, </span>
+		{% for role, person in issue.team %}
+			<span>{{ person.name.first }} {{ person.name.last }}{{ "," if not loop.last }}</span>
 		{% endfor %}
 	</p>
 

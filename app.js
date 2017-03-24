@@ -34,10 +34,27 @@ const site = {
 // Set up routes
 const series = require(path.join(__dirname, '/routes/series'))(site);
 app.use('/series', series);
+const collection = require(path.join(__dirname, '/routes/collection'))(site);
+app.use('/', collection);
 
-app.get('/', (req, res) => {
-	res.render('index.njk', { 'site': site });
-});
+// app.get('/', (req, res) => {
+// 	const mongojs = require('mongojs');
+// 	const db = mongojs('shelf');
+// 	db.issues.find({}).sort({ publicationDate: 1 }).limit(15, (err, docs) => {
+// 		if (err) {
+// 			console.log(err);
+// 			res.send(JSON.stringify(err));
+// 		} else {
+// 			res.render('index.njk', {
+// 				site: site,
+// 				page: {
+// 					title: 'Home'
+// 				},
+// 				issues: docs
+// 			});
+// 		}
+// 	});
+// });
 
 // Turn on listening
 app.listen(3000, function () {

@@ -23,9 +23,9 @@ module.exports = function (site) {
 	});
 
 	router.get('/[a-z0-9-]+(?:\/vol\/?)?', (req, res) => {
-		const seriesTitle = req.url.split('/')[1];
+		const seriesSlug = req.url.split('/')[1];
 		db.series.findOne({
-			'slug': seriesTitle
+			'slug': seriesSlug
 		}, (err, series) => {
 			if (err) {
 				console.log(err);
@@ -33,7 +33,7 @@ module.exports = function (site) {
 			} else if (series !== null) {
 				db.issues.find({
 					'series._id': series._id
-				}, (err, issues) => {
+				}).sort({ publicationDate: 1 }).limit(25, (err, issues) => {
 					if (err) {
 						console.log(err);
 						res.send(JSON.stringify(err));
@@ -49,7 +49,35 @@ module.exports = function (site) {
 					}
 				});
 			} else {
-				res.send('series not found: ' + seriesTitle);
+				res.send('series not found: ' + seriesSlug);
+			}
+		});
+	});
+
+	router.get('/[a-z0-9-]+/vol/[0-9]+/?', (req, res) => {
+		const seriesSlug = req.url.split('/')[1];
+		const volNum = Number(req.url.split('/')[3]);
+		db.issues.find({
+			'series.slug': seriesSlug,
+			'series.volume': volNum
+		}).sort({ publicationDate: 1 }).limit(25, (err, docs) => {
+			if (err) {
+				console.log(err);
+				res.send(JSON.stringify(err));
+			} else if (docs.length < 1) {
+				res.send('no issues found');
+			} else {
+				res.render('series/volume-detail.njk', {
+					site: site,
+					page: {
+						title: docs[0].series.title
+					},
+					series: {
+						title: docs[0].series.title,
+						volume: docs[0].series.volume
+					},
+					issues: docs
+				});
 			}
 		});
 	});
