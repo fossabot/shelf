@@ -1,0 +1,15 @@
+{% extends '_skeletons/page.njk' %}
+
+{% block content %}
+	<h2>Latest Issues</h2>
+	{% for issue in issues %}
+		<p>
+			<a href="/series/{{ issue.series.slug }}/vol/{{ issue.series.volume }}">
+				<strong>{{ issue.series.title }}</strong>
+				<small>Vol. {{ issue.series.volume }}</small>
+			</a>
+			<br />
+			<a href="/series/{{ issue.series.slug }}/vol/{{ issue.series.volume }}/{{ issue.number }}"># {{ issue.number }}</a>
+		</p>
+	{% endfor %}
+{% endblock %}

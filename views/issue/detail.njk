@@ -1,0 +1,24 @@
+{% extends '_skeletons/page.njk' %}
+
+{% block content %}
+	<h2>{{ page.title }}</h2>
+	<p>
+		<strong>Series: </strong>
+		<span>{{ issue.series.title }} Vol. {{ issue.series.volume }}</span>
+	</p>
+	<p>
+		<strong>Number: </strong>
+		<span>{{ issue.number }}</span>
+	</p>
+	<p>
+		<strong>Published: </strong>
+		<span>{{ issue.publicationDate }}</span>
+	</p>
+	<p>
+		<strong>Creative Team: </strong>
+		{% for role, person in issue.team %}
+			<span>{{ person.name.first }} {{ person.name.last }}{{ "," if not loop.last }}</span>
+		{% endfor %}
+	</p>
+
+{% endblock %}

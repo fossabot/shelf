@@ -1,0 +1,37 @@
+{
+  "name": "shelf",
+  "version": "1.0.0",
+  "description": "A comic database and collection management tool",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabeotisbenson/shelf.git"
+  },
+  "keywords": [
+    "shelf",
+    "comic",
+    "comics",
+    "book",
+    "books",
+    "node",
+    "mongo",
+    "express",
+    "collection"
+  ],
+  "author": "Gabriel Benson",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gabeotisbenson/shelf/issues"
+  },
+  "homepage": "https://github.com/gabeotisbenson/shelf#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongojs": "^2.4.0",
+    "nunjucks": "^3.0.0",
+    "stylus": "^0.54.5"
+  }
+}
