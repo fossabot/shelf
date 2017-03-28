@@ -1,7 +1,0 @@
-<div class="issue-box">
-	<div class="issue-cover"><!--<img src="images/[SERIES-ID]/[ISSUE-ID].jpg" />--></div>
-	<p>
-		<span class="issue-title">[SERIES-TITLE]</span>
-		<span class="issue-number">[ISSUE-NUMBER]</span>
-	</p>
-</div>
