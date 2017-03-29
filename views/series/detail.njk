@@ -3,11 +3,16 @@
 {% block content %}
 	<h2>{{ page.title }}</h2>
 	<ul class="issues">
-		{% for issue in issues %}
+		{% for issue in issues | sort('series.volume') %}
 			<li>
 				<a href="/series/{{ series.slug }}/vol/{{ issue.series.volume }}/{{ issue.number }}">
 					<span class="number">#{{ issue.number }}</span>
+					<span class="volume">Vol. {{ issue.series.volume }}</span>
+					<span class="issue-title">"{{ issue.title }}"</span>
+					<span class="writer-name">{{ issue.team.writer.name.first }} {{ issue.team.writer.name.last }}</span>
+					<span class="artist-name">{{ issue.team.artist.name.first }} {{ issue.team.artist.name.last }}</span>
 					<span class="date">Published <span class="isoDate">{{ issue.publicationDate }}</span></span>
+					<span class="want-have">{{ issue.collectionStatus }}</span>
 				</a>
 			</li>
 		{% endfor %}

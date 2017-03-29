@@ -1,7 +1,10 @@
 {% extends '_skeletons/page.njk' %}
 
 {% block content %}
-	<h2>{{ page.title }}</h2>
+	<p>
+		<strong>Issue Title:</strong>
+		<span>"{{ issue.title }}"</span>
+	</p>
 	<p>
 		<strong>Series: </strong>
 		<span>{{ issue.series.title }} Vol. {{ issue.series.volume }}</span>
@@ -11,14 +14,31 @@
 		<span>{{ issue.number }}</span>
 	</p>
 	<p>
-		<strong>Published: </strong>
-		<span>{{ issue.publicationDate }}</span>
+		<strong>Publisher:</strong>
+		<span>{{ issue.publisher.name }}</span>
 	</p>
 	<p>
-		<strong>Creative Team: </strong>
+		<strong>Published:</strong>
+		<span class="isoDate">{{ issue.publicationDate }}</span>
+	</p>
+	<p>
+		<strong>Creative Team: </strong><br />
 		{% for role, person in issue.team %}
 			<span>{{ person.name.first }} {{ person.name.last }}{{ "," if not loop.last }}</span>
+			<em>{{ role }}</em>
+			<br />
 		{% endfor %}
 	</p>
-
+	<p>
+		<strong>Cover Price:</strong>
+		<span>{{ issue.coverPrice }}</span>
+	</p>
+	<p>
+		<strong>Content Rating:</strong>
+		<span>{{ issue.contentRating }}</span>
+	</p>
+	<p>
+		<strong>Collection Status:</strong>
+		<span>{{ issue.collectionStatus }}</span>
+	</p>
 {% endblock %}
