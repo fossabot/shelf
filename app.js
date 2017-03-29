@@ -13,7 +13,7 @@ app.use(stylus.middleware({
 	src: path.join(__dirname, '/resources'),
 	dest: path.join(__dirname, '/public'),
 	force: false,
-	compress: true
+	compress: false
 }));
 
 // Get nunjucks going

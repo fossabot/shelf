@@ -1,42 +1,57 @@
 {% extends '_skeletons/page.njk' %}
 
 {% block content %}
-	<h2>My Collection</h2>
-	{% for status, issues in collection %}
-		<h3>{{ status | capitalize}} Issues</h3>
-		<ul class="collection">
-			{% for issue in issues %}
-				<li>
-					<a href="/series/{{ issue.series.slug }}">{{ issue.series.title }}</a>
-					<a href="/series/{{ issue.series.slug }}/vol/{{ issue.series.volume }}">
-						<small> Vol. {{ issue.series.volume }}</small>
-					</a>
-					<a href="/series/{{ issue.series.slug }}/vol/{{ issue.series.volume }}/{{ issue.number }}">
-						#{{ issue.number }}
-					</a>
-				</li>
-			{% endfor %}
-		</ul>
-	{% endfor %}
+	<div class="section-title">
+		<h2>My Collection</h2>
+	</div>
+	<div class="section-content">
+		{% for status, issues in collection %}
+			<h3>{{ status | capitalize}} Issues</h3>
+			<ul class="collection">
+				{% for issue in issues %}
+					<li>
+						<a href="/series/{{ issue.series.slug }}">{{ issue.series.title }}</a>
+						<a href="/series/{{ issue.series.slug }}/vol/{{ issue.series.volume }}">
+							<small> Vol. {{ issue.series.volume }}</small>
+						</a>
+						<a href="/series/{{ issue.series.slug }}/vol/{{ issue.series.volume }}/{{ issue.number }}">
+							#{{ issue.number }}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endfor %}
+	</div>
 	<form id="addToCollection" method="post">
-		<h2>Add to Collection</h2>
-		<p>
-			<label>Series Name:</label>
-			<input type="text" name="seriesName" />
-			<label>Series Volume:</label>
-			<input type="number" name="seriesVolume" min="1" value="1" />
-			<label>Series Publisher:</label>
-			<input type="text" name="seriesPublisher" />
-			<label>Issue Number(s):</label>
-			<input type="text" name="issueNumbers" />
-			<label>Own/Want</label>
-			<select name="collectionStatus">
-				<option value="own" selected>Own</option>
-				<option value="want">Want</option>
-			</select>
-			<span class="addMore">+</span>
-		</p>
-		<input type="submit" />
+		<div class="section-title">
+			<h2>Add to Collection</h2>
+		</div>
+		<div class="section-content">
+			<p>
+				<label for="seriesName">Series Name:
+					<input type="text" name="seriesName" placeholder="'Spider-Man'" />
+				</label>
+				<label>Series Volume:
+					<input class="text-center" type="number" name="seriesVolume" min="1" value="1" />
+				</label>
+				<label>Issue Number(s):
+					<input type="text" name="issueNumbers" />
+				</label>
+				<label>Series Publisher:
+					<input class="" type="text" name="seriesPublisher" placeholder="'Marvel'" />
+				</label>
+				<label>Own/Want
+					<select name="collectionStatus">
+						<option value="own" selected>Own</option>
+						<option value="want">Want</option>
+					</select>
+				</label>
+				<a class="addMore">Add Series +</a>
+			</p>
+			<input type="submit" />
+		</div>
 	</form>
-	<h2><a href="/series">All Other Series</a></h2>
+	<div class="section-title">
+		<h2><a href="/series">All Other Series</a></h2>
+	</div>
 {% endblock %}

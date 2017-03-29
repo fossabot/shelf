@@ -3,7 +3,9 @@
 {% include "_partials/head.njk" %}
 <body>
 {% include "_partials/header.njk" %}
-{% block content %}{% endblock %}
+<main>
+	{% block content %}{% endblock %}
+</main>
 {% include "_partials/footer.njk" %}
 <script type="text/javascript">{% block customJS %}{% endblock %}</script>
 </body>

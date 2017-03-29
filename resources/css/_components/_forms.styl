@@ -1,0 +1,81 @@
+*
+	border: none
+
+label
+	font-size: .8em
+	font-weight: bold
+	color: darken(gray, 50%)
+	display: block
+
+input
+	height: 4em
+	margin: .5em 0 1em 0
+	font-size: 1.3em
+	font-weight: bold
+	border: 1px solid darken(gray, 20%)
+	border-radius: .3em
+	padding: 0 1em 0 1em
+	display: block
+	transition: 180ms border ease
+	width: 100%;
+	&::placeholder
+		color: darken(gray, 20%)
+		font-weight: bold
+		font-size: 1.3em
+	&:focus
+		border-color: teal
+
+select
+	height: 4em
+	margin: .5em 0 1em 0
+	font-size: 1.3em
+	font-weight: bold
+	border: 1px solid darken(gray, 20%)
+	border-radius: .3em
+	padding: 0 1em 0 1em
+	display: block
+	transition: 180ms border ease
+	width: 100%
+	background: white url('/images/resources/arrow.svg') no-repeat right
+	overflow: hidden
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+.addMore, .removeRow
+	display: block
+	border-radius: .2em
+	background: pink
+	padding: 1em
+	color: white
+	font-weight: bold
+	transition: 180ms background ease
+	&:hover
+		background: darken(pink, 20%)
+		text-decoration: none
+		cursor: pointer
+
+input[type="submit"]
+	background: teal
+	color: white
+	transition: 180ms background ease
+	&:hover
+		background: darken(teal, 20%)
+		cursor: pointer
+
+// Text Align Classes
+.text-center
+	text-align: center
+
+// Flex Classes
+.flex-container
+	display: flex
+
+.flex-item
+	flex-grow: 1
+
+.flex-item:first-child
+	margin-right: 1em
+
+.focused
+	color: teal
