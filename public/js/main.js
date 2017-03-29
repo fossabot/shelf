@@ -11,9 +11,14 @@ $(document).ready(function () {
 	// Add to Collection Form
 	$('#addToCollection').on('click', '.addMore', function () {
 		$(this).parent().after('<p>' + $(this).parent().html() + '</p>');
-		$(this).html('-').removeClass('addMore').addClass('removeRow');
+		$(this).html('Remove Row -').removeClass('addMore').addClass('removeRow');
 	});
 	$('#addToCollection').on('click', '.removeRow', function () {
 		$(this).parent().remove();
+	});
+
+	// Label Color Change on Focus
+	$('input').on('focus blur', function () {
+		$(this).parent().toggleClass('focused');
 	});
 });
