@@ -2,89 +2,71 @@ const mongojs = require('mongojs');
 const db = mongojs('shelf');
 const bodyParser = require('body-parser');
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
+const async = require('async');
 
-function populateSeriesIDs (formObject, callback) {
-	formObject.seriesID = [];
-	for (var i = 0; i < formObject.seriesName.length; ++i) {
-		console.log(i);
-		db.series.findOne({
-			title: formObject.seriesName[i]
-		}, (err, doc) => {
-			if (err) {
-				callback(err);
-			} else if (doc !== null) {
-				console.log('series found');
-				// Series already exists
-				formObject.seriesID.push(doc._id);
-				if (i === formObject.seriesName.length - 1) {
-					callback(null, formObject);
+function getPublisherID (object, callback) {
+	db.publishers.findOne({
+		'slug': object.publisher.slug
+	}, (err, doc) => {
+		if (err) {
+			// There was an error
+			object.publisher._id = -1;
+			callback(object, err);
+		} else if (doc) {
+			// Grab the existing id
+			object.publisher._id = mongojs.ObjectId(doc._id);
+			callback(object);
+		} else {
+			// Insert and use the new id
+			db.publishers.insert({
+				'slug': object.publisher.slug,
+				'name': object.publisher.name
+			}, (err, doc) => {
+				if (err) {
+					object.publisher._id = -1;
+					callback(object, err);
+				} else {
+					object.publisher._id = mongojs.ObjectId(doc._id);
+					callback(object);
 				}
-			} else {
-				console.log('series not found');
-				// Series does not yet exist
-				formObject.seriesID.push(-1);
-				// TODO FILL OUT LATER
-				if (i === formObject.seriesName.length - 1) {
-					callback(null, formObject);
-				}
-			}
-		});
-	}
-}
-
-function populatePublisherIDs (formObject, callback) {
-	formObject.publisherID = [];
-	for (var i = 0; i < formObject.seriesPublisher.length; ++i) {
-		db.publishers.findOne({
-			name: formObject.seriesPublisher[i]
-		}, (err, doc) => {
-			if (err) {
-				callback(err);
-			} else if (doc !== null) {
-				console.log('publisher found');
-				// Publisher already exists
-				formObject.publisherID.push(doc._id);
-				if (i === formObject.seriesPublisher.length - 1) {
-					callback(null, formObject);
-				}
-			} else {
-				console.log('publisher not found');
-				// Publisher does not yet exist
-				formObject.publisherID.push(-1);
-				// TODO FILL OUT LATER
-				if (i === formObject.seriesPublisher.length - 1) {
-					callback(null, formObject);
-				}
-			}
-		});
-	}
-}
-
-function populateObjects (formObject, callback) {
-	var objsArr = [];
-	for (var i = 0; i < formObject.seriesName.length; ++i) {
-		var numsArr = formObject.issueNumbers[i].split(',');
-		for (var j = 0; j < numsArr.length; ++j) {
-			var rangeArr = numsArr[j].split('-');
-			for (var k = rangeArr[0]; k <= rangeArr[rangeArr.length - 1]; ++k) {
-				objsArr.push({
-					series: {
-						slug: formObject.seriesName[i].toLowerCase().replace(' ', '-'),
-						title: formObject.seriesName[i],
-						volume: formObject.seriesVolume[i]
-					},
-					publisher: {
-						name: formObject.seriesPublisher[i]
-					},
-					number: k,
-					collectionStatus: formObject.collectionStatus[i]
-				});
-				if (i === formObject.seriesName.length - 1 && j === numsArr.length - 1 && k === Number(rangeArr[rangeArr.length - 1])) {
-					callback(objsArr);
-				}
-			}
+			});
 		}
-	}
+	});
+}
+
+function getSeriesID (object, callback) {
+	db.series.findOne({
+		'slug': object.series.slug
+	}, (err, doc) => {
+		if (err) {
+			// There was an error
+			object.series._id = -1;
+			callback(err);
+		} else if (doc) {
+			// Grab the existing id
+			object.series._id = mongojs.ObjectId(doc._id);
+			callback();
+		} else {
+			// Insert and use the new id
+			db.series.insert({
+				'slug': object.series.slug,
+				'title': object.series.title,
+				'publisher': {
+					'_id': mongojs.ObjectId(object.publisher._id),
+					'slug': object.publisher.slug,
+					'name': object.publisher.name
+				}
+			}, (err, doc) => {
+				if (err) {
+					object.series._id = -1;
+					callback(err);
+				} else {
+					object.series._id = mongojs.ObjectId(doc._id);
+					callback();
+				}
+			});
+		}
+	});
 }
 
 module.exports = function (site) {
@@ -137,27 +119,78 @@ module.exports = function (site) {
 
 	router.post('/', urlEncodedParser, (req, res) => {
 		if (typeof req.body.seriesName === 'string') {
-			// Single entry
-			res.send('single');
-		} else {
-			populateSeriesIDs(req.body, (err, objsArr) => {
+			req.body.seriesName = [req.body.seriesName];
+			req.body.seriesVolume = [req.body.seriesVolume];
+			req.body.seriesPublisher = [req.body.seriesPublisher];
+			req.body.issueNumbers = [req.body.issueNumbers];
+			req.body.collectionStatus = [req.body.collectionStatus];
+		}
+		var objsArray = [];
+		var finalObjsArray = [];
+		for (var i = 0; i < req.body.seriesName.length; ++i) {
+			objsArray.push({
+				'numbers': req.body.issueNumbers[i],
+				'series': {
+					'slug': req.body.seriesName[i].toLowerCase().replace(/[:!]/g, '').replace(/\s/g, '-'),
+					'title': req.body.seriesName[i],
+					'volume': Number(req.body.seriesVolume[i])
+				},
+				'publisher': {
+					'slug': req.body.seriesPublisher[i].toLowerCase().replace(' comics', '').replace(/\s/g, '-'),
+					'name': req.body.seriesPublisher[i]
+				},
+				'collectionStatus': req.body.collectionStatus[i]
+			});
+		}
+		async.each(objsArray, (object, outerCallback) => {
+			getPublisherID(object, (object, err) => {
 				if (err) {
-					res.send('error finding series');
-					console.log(err);
+					outerCallback(err);
 				} else {
-					populatePublisherIDs(objsArr, (err, objsArr) => {
+					getSeriesID(object, (err) => {
 						if (err) {
-							res.send('error finding publishers');
-							console.log(err);
+							outerCallback(err);
 						} else {
-							populateObjects(objsArr, (objsArr) => {
-								res.send('<pre>' + JSON.stringify(objsArr, null, 2) + '</pre>');
+							var numsArr = object.numbers.split(',');
+							async.each(numsArr, (nums, innerCallback) => {
+								var start, end;
+								if (nums.indexOf('-') !== -1) {
+									start = Number(nums.split('-')[0]);
+									end = Number(nums.split('-')[1]);
+								} else {
+									start = Number(nums);
+									end = Number(nums);
+								}
+								for (var i = start; i <= end; ++i) {
+									finalObjsArray.push({
+										'series': object.series,
+										'publisher': object.publisher,
+										'collectionStatus': object.collectionStatus,
+										'number': i
+									});
+									if (i === end) innerCallback();
+								}
+							}, (err) => {
+								outerCallback(err);
 							});
 						}
 					});
 				}
 			});
-		}
+		}, (err) => {
+			if (err) {
+				console.log(err);
+				res.redirect('/error');
+			} else {
+				db.issues.insert(finalObjsArray, (err) => {
+					if (err) {
+						res.redirect('/error');
+					} else {
+						res.redirect('/');
+					}
+				});
+			}
+		});
 		// res.send('<pre>' + JSON.stringify(req.body, null, 2) + '</pre>');
 		// res.redirect('/');
 	});
