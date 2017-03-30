@@ -36,22 +36,14 @@ const series = require(path.join(__dirname, '/routes/series'))(site);
 app.use('/series', series);
 const collection = require(path.join(__dirname, '/routes/collection'))(site);
 app.use('/collection', collection);
+const publisher = require(path.join(__dirname, '/routes/publisher'))(site);
+app.use('/publisher', publisher);
 
 app.get('/', (req, res) => {
-	const mongojs = require('mongojs');
-	const db = mongojs('shelf');
-	db.issues.find({}).sort({ publicationDate: 1 }).limit(15, (err, docs) => {
-		if (err) {
-			console.log(err);
-			res.send(JSON.stringify(err));
-		} else {
-			res.render('index.njk', {
-				site: site,
-				page: {
-					title: 'Home'
-				},
-				issues: docs
-			});
+	res.render('index.njk', {
+		site: site,
+		page: {
+			title: 'Home'
 		}
 	});
 });

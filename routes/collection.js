@@ -136,7 +136,7 @@ module.exports = function (site) {
 					'volume': Number(req.body.seriesVolume[i])
 				},
 				'publisher': {
-					'slug': req.body.seriesPublisher[i].toLowerCase().replace(' comics', '').replace(/\s/g, '-'),
+					'slug': req.body.seriesPublisher[i].toLowerCase().replace(' comics', '').replace(/[:!]/g, '').replace(/\s/g, '-'),
 					'name': req.body.seriesPublisher[i]
 				},
 				'collectionStatus': req.body.collectionStatus[i]

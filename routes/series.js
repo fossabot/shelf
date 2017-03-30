@@ -24,7 +24,7 @@ module.exports = function (site) {
 	});
 
 	// Series volume request, serves up list of series' volumes
-	router.get('/[a-z0-9-]+(?:\/vol\/?)?', (req, res) => {
+	router.get('/[a-z0-9-]+(?:/vol/?)?', (req, res) => {
 		const seriesSlug = req.url.split('/')[1];
 		db.series.findOne({
 			'slug': seriesSlug
