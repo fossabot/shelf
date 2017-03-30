@@ -5,6 +5,7 @@ module.exports = function (site) {
 	const express = require('express');
 	const router = express.Router();
 
+	// Root series request, serves up list of series
 	router.get('/', (req, res) => {
 		db.series.find({}, (err, records) => {
 			if (err) {
@@ -22,6 +23,7 @@ module.exports = function (site) {
 		});
 	});
 
+	// Series volume request, serves up list of series' volumes
 	router.get('/[a-z0-9-]+(?:\/vol\/?)?', (req, res) => {
 		const seriesSlug = req.url.split('/')[1];
 		db.series.findOne({
@@ -33,7 +35,7 @@ module.exports = function (site) {
 			} else if (series !== null) {
 				db.issues.find({
 					'series._id': series._id
-				}).sort({ publicationDate: 1 }).limit(25, (err, issues) => {
+				}).sort({ number: 1 }, (err, issues) => {
 					if (err) {
 						console.log(err);
 						res.send(JSON.stringify(err));
@@ -54,13 +56,14 @@ module.exports = function (site) {
 		});
 	});
 
+	// Series volume detail request, serves up list of issues in series' volume
 	router.get('/[a-z0-9-]+/vol/[0-9]+/?', (req, res) => {
 		const seriesSlug = req.url.split('/')[1];
 		const volNum = Number(req.url.split('/')[3]);
 		db.issues.find({
 			'series.slug': seriesSlug,
 			'series.volume': volNum
-		}).sort({ publicationDate: 1 }).limit(25, (err, docs) => {
+		}).sort({ number: 1 }, (err, docs) => {
 			if (err) {
 				console.log(err);
 				res.send(JSON.stringify(err));
@@ -82,6 +85,7 @@ module.exports = function (site) {
 		});
 	});
 
+	// Series issue request, serves up issue detail
 	router.get('/[a-z0-9-]+/vol/[0-9]+/[0-9]+', (req, res) => {
 		const seriesSlug = req.url.split('/')[1];
 		const volNum = Number(req.url.split('/')[3]);

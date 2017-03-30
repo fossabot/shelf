@@ -2,16 +2,19 @@
 
 {% block content %}
 	<p>
-		<strong>Issue Title:</strong>
-		<span>"{{ issue.title }}"</span>
+		<strong>Series: </strong>
+		<span>{{ issue.series.title }}</span>
 	</p>
 	<p>
-		<strong>Series: </strong>
-		<span>{{ issue.series.title }} Vol. {{ issue.series.volume }}</span>
-	</p>
+		<strong>Volume:</strong>
+		<span>{{ issue.series.volume }}</span>
 	<p>
 		<strong>Number: </strong>
 		<span>{{ issue.number }}</span>
+	</p>
+	<p>
+		<strong>Issue Title:</strong>
+		<span>"{{ issue.title }}"</span>
 	</p>
 	<p>
 		<strong>Publisher:</strong>
