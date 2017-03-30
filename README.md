@@ -24,7 +24,7 @@ mongorestore dump
 nodemon
 `
 
-##Search Planning:
+## Search Planning:
 * Search results should be based on two main factors: most significant series and most recent, as thouse are probably the most importnat to people.
 * Below those two sections, all other results can display with advanced date filtering.  
 * Need to also optimize for "talent" searches. For expample, if someone searches for Jack Kirby, his most significant and most recent results should
