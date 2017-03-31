@@ -23,7 +23,7 @@ module.exports = function (site) {
 						}
 					});
 				}, (err) => {
-					if (!err) {
+					if (err) {
 						res.render('publisher/index.njk', {
 							site: site,
 							page: {
@@ -31,6 +31,8 @@ module.exports = function (site) {
 							},
 							publishers: docs
 						});
+					} else {
+						res.render('error.njk');
 					}
 				});
 			}

@@ -1,0 +1,14 @@
+{% extends '_skeletons/page.njk' %}
+
+{% block title %}{{ code }} - shelf{% endblock %}
+
+{% block content %}
+	<h2>{% if code %}{{ code }}{% else %}500{% endif %}</h2>
+	<p>
+		{% if code === 404 %}
+			Oops, it looks like that page couldn't be found.  Sorry about that!
+		{% else %}
+			Oops, it looks like something went wrong on our end.  Sorry about that!
+		{% endif %}
+	</p>
+{% endblock %}
