@@ -1,6 +1,10 @@
 {% extends '_skeletons/page.njk' %}
 
-{% block title %}{{ code }} - shelf{% endblock %}
+{% if code %}
+	{% set title = code + " - shelf" %}
+{% else %}
+	{% set title = "500 - shelf" %}
+{% endif %}
 
 {% block content %}
 	<h2>{% if code %}{{ code }}{% else %}500{% endif %}</h2>

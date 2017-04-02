@@ -9,8 +9,7 @@ module.exports = function (site) {
 	router.get('/', (req, res) => {
 		db.series.find({}, (err, records) => {
 			if (err) {
-				console.log(err);
-				res.send(JSON.stringify(err));
+				res.render('error.njk');
 			} else {
 				res.render('series/list.njk', {
 					site: site,
@@ -30,15 +29,13 @@ module.exports = function (site) {
 			'slug': seriesSlug
 		}, (err, series) => {
 			if (err) {
-				console.log(err);
-				res.send(JSON.stringify(err));
+				res.render('error.njk');
 			} else if (series !== null) {
 				db.issues.find({
 					'series._id': series._id
 				}).sort({ number: 1 }, (err, issues) => {
 					if (err) {
-						console.log(err);
-						res.send(JSON.stringify(err));
+						res.render('error.njk');
 					} else {
 						res.render('series/detail.njk', {
 							site: site,
@@ -51,6 +48,7 @@ module.exports = function (site) {
 					}
 				});
 			} else {
+				// TODO
 				res.send('series not found: ' + seriesSlug);
 			}
 		});
@@ -65,9 +63,9 @@ module.exports = function (site) {
 			'series.volume': volNum
 		}).sort({ number: 1 }, (err, docs) => {
 			if (err) {
-				console.log(err);
-				res.send(JSON.stringify(err));
+				res.render('error.njk');
 			} else if (docs.length < 1) {
+				// TODO
 				res.send('no issues found');
 			} else {
 				res.render('series/volume-detail.njk', {
@@ -96,9 +94,9 @@ module.exports = function (site) {
 			'number': issueNum
 		}, (err, issue) => {
 			if (err) {
-				console.log(err);
-				res.send(JSON.stringify(err));
+				res.render('error.njk');
 			} else if (issue === null) {
+				// TODO
 				res.send('issue not found: ' + seriesSlug + ' Vol. ' + volNum + ' #' + issueNum);
 			} else {
 				res.render('issue/detail.njk', {

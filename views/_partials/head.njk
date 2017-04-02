@@ -2,9 +2,13 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>
-		{% block title %}
-			{{ page.title + " - " + site.title if page.title else site.title }}
-		{% endblock %}
+		{% if page.title %}
+			{{ page.title + " - " + site.title}}
+		{% elif site.title %}
+		 	{{ site.title }}
+		{% else %}
+			{{ title }}
+		{% endif %}
 	</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

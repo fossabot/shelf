@@ -48,7 +48,22 @@ app.get('/', (req, res) => {
 	});
 });
 
+// 404 Errors
+app.use((req, res) => {
+	const errorCode = 404;
+	res.status(errorCode);
+	if (req.accepts('html')) {
+		res.render('error.njk', { code: errorCode });
+		return;
+	}
+	if (req.accepts('json')) {
+		res.send({ error: errorCode });
+		return;
+	}
+	res.type('txt').send('Error: ' + errorCode);
+});
+
 // Turn on listening
 app.listen(3000, function () {
-	console.log('Example app listening on port 3000!');
+	console.log('Listening on port 3000!');
 });

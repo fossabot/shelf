@@ -11,7 +11,7 @@ module.exports = function (site) {
 			'name': 1
 		}, (err, docs) => {
 			if (err) {
-				res.redirect('/error');
+				res.render('error.njk');
 			} else {
 				async.each(docs, (publisher, callback) => {
 					db.issues.find({
@@ -23,7 +23,7 @@ module.exports = function (site) {
 						}
 					});
 				}, (err) => {
-					if (err) {
+					if (!err) {
 						res.render('publisher/index.njk', {
 							site: site,
 							page: {

@@ -87,9 +87,9 @@ module.exports = function (site) {
 			]
 		}).sort({ 'publicationDate': 1 }).limit(100, (err, docs) => {
 			if (err) {
-				console.log(err);
-				res.send(JSON.stringify(err));
+				res.render('error.njk');
 			} else if (docs.length < 1) {
+				// TODO
 				res.send('no issues found');
 			} else {
 				var iteration = 0;
@@ -179,8 +179,7 @@ module.exports = function (site) {
 			});
 		}, (err) => {
 			if (err) {
-				console.log(err);
-				res.redirect('/error');
+				res.render('error.njk');
 			} else {
 				db.issues.insert(finalObjsArray, (err) => {
 					if (err) {
@@ -191,8 +190,6 @@ module.exports = function (site) {
 				});
 			}
 		});
-		// res.send('<pre>' + JSON.stringify(req.body, null, 2) + '</pre>');
-		// res.redirect('/');
 	});
 
 	return router;
