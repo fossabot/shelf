@@ -1,0 +1,77 @@
+// Color Variables
+//-----------------
+
+$white: #ffffff;
+$light-gray: #f7f7f7;
+$gray: #cccccc;
+$dark-gray: #3c3c3c;
+$black: #000000;
+$green: #087E8B;
+$pink: #FF5C61;
+$purple: #625d7c;
+
+// Color Variables By Function:
+$want-bg: $pink;
+$have-bg: $green;
+
+// Icons
+$icon-default-color: #919191;
+$icon-hover-color: $dark-gray;
+$icon-active-color: $black;
+
+.test {
+  display: block;
+  background: $pink;
+  p, h2 {
+    color: $white;
+    text-shadow: 2px 2px #000000;
+  }
+}
+
+// Typography
+// ----------
+
+// League Spartan
+@font-face {
+  font-family: 'League Spartan';
+  src: url('/fonts/leaguespartan-bold.eot');
+  src: url('/fonts/leaguespartan-bold.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/leaguespartan-bold.woff2') format('woff2'),
+  url('/fonts/leaguespartan-bold.woff') format('woff'),
+  url('/fonts/leaguespartan-bold.ttf') format('truetype'),
+  url('/fonts/leaguespartan-bold.svg#league_spartanbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Open Sans
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+// Font Family Variables
+$header-font-family: 'League Spartan', 'Helvetica', sans-serif;
+$paragraph-font-family: 'Open Sans', 'Helvetica', sans-serif;
+$button-font-family: $header-font-family;
+
+// Font Color Variables
+$default-text-color: $black;
+$link-font-color: $green;
+
+// Breakpoints
+// -----------
+
+$phone: "(min-width: 0px) and (max-width: 639px)";
+$mobile-nav: "(min-width: 0px) and (max-width: 895px)";
+$tablet: "(min-width: 640px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+
+
+// Global Mixins
+//--------------
+
+// Row Mixin
+@mixin row () {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 .5em 0 .5em;
+}

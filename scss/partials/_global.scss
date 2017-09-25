@@ -1,0 +1,94 @@
+// Import Global Variables
+// -----------------------
+
+@import 'variables';
+
+// Page Structure & Styles
+// -----------------------
+
+* {
+  margin: 0;
+}
+
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .5em;
+}
+
+.row {
+  @include row;
+}
+
+// Typography & Global Styles
+//---------------------------
+
+// Heading Font & Color
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  color: $default-text-color;
+}
+
+// Heading Sizes
+h1 {
+  font-size: 1rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin: .5em 0 .5em 0;
+}
+
+// Body Fonts
+
+body {
+  font-family: $paragraph-font-family;
+  font-size: .9rem;
+}
+
+p, span, ul, li {
+  font-family: $paragraph-font-family;
+  color: $default-text-color;
+  font-size: .9rem;
+}
+
+// Links
+a {
+  text-decoration: none;
+  color: $link-font-color;
+  font-weight: bold;
+  transition: 180ms ease color;
+  // Hover State
+  &:hover {
+    color: darken($link-font-color, 10%);
+  }
+  // Active State
+  &:active {
+    color: darken($link-font-color, 20%);
+  }
+}
+
+// Icons
+.icon {
+  color: $icon-default-color;
+  transition: 180ms ease color;
+  // Hover State
+  &:hover {
+    color: $icon-hover-color;
+  }
+  // Active State
+  &:active {
+    color: $icon-active-color;
+  }
+}

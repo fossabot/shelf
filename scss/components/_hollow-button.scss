@@ -1,0 +1,40 @@
+// Hollow Button Variables
+$hollow-button-gray: #919191;
+
+// Hollow Button Mixin
+// Background, Border, Color, Hover-Border, Hover-Color, Active-Border, Active-Color
+@mixin hollow-button ( $background: $white, $border: $hollow-button-gray, $color: $hollow-button-gray, $hover-border: $dark-gray, $hover-color: $dark-gray, $active-border: $black, $active-color: $black ) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1em 0;
+  padding-top: .15em;
+  background: $background;
+  color: $color;
+  border: 2px solid $border;
+  border-radius: .5em;
+  font-family: $button-font-family;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  flex-wrap: wrap;
+  min-height: 2em;
+  max-width: 250px;
+  transition: 180ms ease border, 180ms ease color;
+  // Hover
+  &:hover {
+    border: 2px solid $hover-border;
+    color: $hover-color;
+  }
+  // Active
+  &:active {
+    border: 2px solid $active-border;
+    color: $active-color;
+  }
+}
+
+// Default Hollow Button Class
+.hollow-button {
+  @include hollow-button;
+}

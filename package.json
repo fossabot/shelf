@@ -1,38 +1,35 @@
 {
   "name": "shelf",
   "version": "1.0.0",
-  "description": "A comic database and collection management tool",
+  "description": "An open source comic book collection management app",
   "main": "app.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss scss/app.scss public/css/app.css && node app.js",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "watch": "nodemon -e js,njk,json,scss -x \"npm run build-css\""
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "feather-icons": "^3.2.2",
+    "gulp-cli": "^1.3.0",
+    "node-sass": "^4.4.0",
+    "nodemon": "^1.11.0",
+    "nunjucks": "^3.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabeotisbenson/shelf.git"
+    "url": "https://github.com/gabeotisbenson/shelf"
   },
-  "keywords": [
-    "shelf",
-    "comic",
-    "comics",
-    "book",
-    "books",
-    "node",
-    "mongo",
-    "express",
-    "collection"
-  ],
-  "author": "Gabriel Benson",
-  "license": "GPL-3.0",
+  "author": "John French and Gabriel Benson",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gabeotisbenson/shelf/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/gabeotisbenson/shelf#readme",
-  "dependencies": {
-    "async": "^2.2.0",
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "mongojs": "^2.4.0",
-    "nunjucks": "^3.0.0",
-    "stylus": "^0.54.5"
+  "homepage": "",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-nunjucks": "^3.0.0",
+    "gulp-rename": "^1.2.2"
   }
 }

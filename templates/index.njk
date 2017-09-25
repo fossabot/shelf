@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	{% include "./partials/head.njk" %}
+	<body>
+		{% include "./partials/header.njk" %}
+		<main>
+			<h2>Create Your Account</h2>
+			<p>
+				Get started with Shelf now to keep track of what new comics are coming out. Select comics you want and comics you already have to stay on top of your collection.
+			</p>
+			{# <a class="button" href="#">Create Account</a>
+			<a class="hollow-button" href="#">See All</a> #}
+			<form class="row">
+				<label>Email
+					<input type="text" placeholder="something@email.com" />
+				</label>
+				<label>Password
+					<input type="password" placeholder="•••••••••••••" />
+				</label>
+				<label>Confirm Password
+					<input type="password" placeholder="•••••••••••••" />
+				</label>
+				<input type="submit" value="Sign Up" />
+			</form>
+		</main>
+		{% include "./partials/footer.njk" %}
+		{% include "./partials/scripts.njk" %}
+	</body>
+</html>

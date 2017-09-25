@@ -1,0 +1,56 @@
+// Header Variables
+// ----------------
+
+$header-bottom-border-color: #D0D0D0;
+
+// Header Styles
+// -------------
+
+header {
+  // border-top: 1px solid $header-bottom-border-color;
+  border-bottom: 1px solid $header-bottom-border-color;
+}
+
+.header-content {
+  @include row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 .5em 0 .5em;
+  height: 50px;
+  .site-title {
+    flex-grow: 2;
+    a {
+      display: inline-block;
+    }
+    h1 {
+      transition: 180ms ease color;
+      text-transform: uppercase;
+    }
+    // Hover State
+    a:hover h1 {
+      color: lighten($dark-gray, 20%);
+    }
+    // Active State
+    a:active h1 {
+      color: lighten($dark-gray, 30%);
+    }
+    // h1 {
+    //   transition: 180ms ease color;
+    //   text-transform: uppercase;
+    // }
+    // // Hover State
+    // h1:hover {
+    //   color: lighten($dark-gray, 20%);
+    // }
+    // // Active State
+    // h1:active {
+    //   color: lighten($dark-gray, 30%);
+    // }
+  }
+  .search-icon {
+  }
+  .profile-icon {
+    margin-left: 1em;
+  }
+}

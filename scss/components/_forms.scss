@@ -1,0 +1,190 @@
+// Global Form Styles
+// ------------------
+
+* {
+	border: none;
+}
+
+form {
+  margin: 2em 0 2em 0;
+}
+
+// Label Styles
+// ------------
+
+$label-color: #919191;
+
+label {
+  font-family: $header-font-family;
+	font-size: .9em;
+	font-weight: bold;
+	color: $label-color;
+	display: block;
+	transition: 180ms ease color;
+}
+
+// Focused Class (For JS Toggle)
+.focused {
+  color: $dark-gray;
+}
+
+// Placeholder Styles
+// ------------------
+
+$placeholder-color: #C9C9C9;
+
+::-webkit-input-placeholder {
+	color: $placeholder-color;
+}
+:moz-placeholder {
+	color: $placeholder-color;
+}
+::moz-placeholder {
+	color: $placeholder-color;
+}
+:-ms-input-placeholder {
+	color: $placeholder-color;
+}
+input::placeholder {
+	color: $placeholder-color;
+	opacity: 1;
+}
+
+// Input Styles
+// ------------
+
+input[type="text"], input[type="submit"], input[type="number"], input[type="email"], input[type="password"] {
+	width: 100%;
+	box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  outline: none;
+	height: 4em;
+	margin: .5em 0 1em 0;
+	font-size: 1.2em;
+	font-weight: bold;
+  font-family: $header-font-family;
+	border: 2px solid $gray;
+	padding: 0 1em 0 1em;
+	display: block;
+	transition: 180ms border ease;
+	&::placeholder {
+		color: $placeholder-color;
+		font-weight: bold;
+		font-size: 1.3em;
+	}
+	&:hover {
+		border: 2px solid darken($gray, 15%);
+	}
+	&:focus {
+		border-color: $dark-gray;
+	}
+}
+
+// Submit Styles
+// -------------
+
+input[type="submit"] {
+	@include button;
+	border: none;
+	margin: 0;
+	cursor: pointer;
+	min-height: 5em;
+	&:hover {
+		border: none;
+	}
+}
+
+// Select Styles
+// -------------
+
+// select {
+// 	height: 4em;
+// 	margin: .5em 0 1em 0;
+// 	font-size: 1.3em;
+// 	font-weight: bold;
+// 	border: 2px solid $gray;
+// 	border-radius: .3em;
+// 	padding: 0 1em 0 1em;
+// 	display: block;
+// 	transition: 180ms border ease;
+// 	width: 100%;
+// 	background: $white;
+// 	overflow: hidden;
+// 	-webkit-appearance: none;
+// 	-moz-appearance: none;
+// 	appearance: none;
+// 	color: $dark-gray;
+// 	&:first-child {
+// 		color: darken($gray, 20%);
+// 		font-weight: bold;
+// 		font-size: 1.5em;
+// 	}
+// 	&:focus {
+// 		border-color: $green;
+// 	}
+// 	option {
+// 		color: $dark-gray;
+// 	}
+// }
+
+// Text Area
+// ---------
+
+// textarea {
+// 	display: block;
+// 	min-height: 6em;
+// 	background: $white;
+// 	margin: .5em 0 1em 0;
+// 	font-size: 1.3em;
+// 	font-weight: bold;
+// 	border: 2px solid $gray;
+// 	border-radius: .3em;
+// 	padding: 1em 1em 0 1em;
+// 	transition: 180ms border ease;
+// 	width: 100%;
+// 	&::placeholder {
+// 		color: darken($gray, 20%);
+// 		font-weight: bold;
+// 		font-size: 1.3em;
+// 	}
+// 	&:focus {
+// 		border-color: $green;
+// 	}
+// }
+
+// ------------------------------------------------------------
+
+//
+// .placeholder {
+// 	color: darken($gray, 20%) !important;
+// 	font-size: 1.3em;
+// }
+//
+
+//
+// textarea {
+// 	display: block;
+// 	min-height: 6em;
+// 	background: $white;
+// 	margin: .5em 0 1em 0;
+// 	font-size: 1.3em;
+// 	font-weight: bold;
+// 	border: 2px solid $gray;
+// 	border-radius: .3em;
+// 	padding: 1em 1em 0 1em;
+// 	transition: 180ms border ease;
+// 	width: 100%;
+// 	&::placeholder {
+// 		color: darken($gray, 20%);
+// 		font-weight: bold;
+// 		font-size: 1.3em;
+// 	}
+// 	&:focus {
+// 		border-color: $green;
+// 	}
+// }
+//
+// .focused {
+// 	color: $green;
+// }

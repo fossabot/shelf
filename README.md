@@ -1,31 +1,45 @@
-# Shelf
-A comic database and collection management tool
+# extension-main
+This is the repository for the extension refresh project.
 
-# Setup
-Before running, you will need to make sure you have the latest version of node.js, npm, and mongodb installed and configured.  Make sure mongodb is already running, then follow these steps to get the project set up and ready for development:
-1. Install nodemon (Note: you may need to prepend the following command with `sudo`)
-`
-npm i -g nodemon
-`
-1. Clone the repository
-`
-git clone git@github.com:gabeotisbenson/shelf.git
-`
-1. Enter the directory and install necessary dependencies
-`
+## Setup
+
+### Clone the repository
+1. In the terminal (Linux/MacOS) or Git Bash (Windows), clone the repository:
+
+```bash
+git clone git@gitlab.com:caesoit/extension-main.git
+```
+
+2. Move into the newly-cloned directory:
+
+```bash
+cd extension-main
+```
+
+### Install dependencies
+1. Install necessary global dependencies.  Note that you may need to prepend the following command with `sudo`
+
+```bash
+npm i -g gulp
+```
+
+1. Install local dependencies
+
+```bash
 npm i
-`
-1. Restore the mongodb dump
-`
-mongorestore dump
-`
-1. Now, simply start nodemon and you should be good to go!
-`
-nodemon
-`
+```
 
-## Search Planning:
-* Search results should be based on two main factors: most significant series and most recent, as thouse are probably the most importnat to people.
-* Below those two sections, all other results can display with advanced date filtering.  
-* Need to also optimize for "talent" searches. For expample, if someone searches for Jack Kirby, his most significant and most recent results should
-show.  It would also be cool if we could display a picture of him... but that might be wishful thinking or a whole separate database.
+### Running and/or compiling
+* To run the application server:
+
+```bash
+npm run watch
+```
+
+Then visit [localhost:3000](http://localhost:3000) in your browser
+
+* To compile static html files into the public folder:
+
+```bash
+gulp
+```

@@ -1,0 +1,108 @@
+// Footer Variables
+$footer-pink-color: #ff8a8e;
+$darker-gray: darken($dark-gray, 5%);
+
+// Footer Styles
+footer {
+  margin-top: 10em;
+  background: $dark-gray;
+  // Footer Support Bar
+  .footer-support-bar {
+    background: lighten($dark-gray, 5%);
+    color: $white;
+  }
+  // Footer Support Bar Content
+  .footer-support-bar .footer-support-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1em;
+  }
+  // Send Us Feedback Button
+  .footer-support-bar .footer-support-content .footer-support-button {
+    background: $green;
+    margin: .5em 0 .5em 1em;
+    padding: 1em;
+    display: block;
+    border-radius: .3em;
+    font-family: $button-font-family;
+    font-size: .7rem;
+    text-align: center;
+    color: $white;
+    text-transform: uppercase;
+    transition: 180ms ease background;
+    // Small Screen Margin and Size
+    @media #{$phone} {
+      margin: 1em 0 1em 0;
+      width: 100%;
+    }
+    // Hover State
+    &:hover {
+      background: darken($green, 5%);
+    }
+    // Active State
+    &:active {
+      background: darken($green, 7%);
+    }
+  }
+  // Footer Main Section (Contains About and Links)
+  .footer-main {
+    background: $dark-gray;
+    padding: 7em 0 7em 0;
+  }
+  // Footer About Section
+  .footer-about {
+    @include row;
+    display: flex;
+    align-items: center;
+    background: $dark-gray;
+    padding: 2em 1em 0 1em;
+  }
+  .footer-about .message {
+    color: $white;
+  }
+  .footer-about .icon {
+    margin-right: 1em;
+    color: $white;
+  }
+  // Footer Links
+  .footer-links {
+    @include row;
+    background: $dark-gray;
+    padding: 1em 1em 2em 1em;
+    color: $white;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    ul li {
+      margin: 0;
+    }
+    ul li a {
+      color: $white;
+      font-size: .8rem;
+      transition: 180ms ease color;
+    }
+    // Hover State
+    ul li a:hover {
+      color: $footer-pink-color;
+    }
+  }
+  // Footer Credits Section
+  .credits {
+    text-align: right;
+    padding: 1em .5em 1em 0;
+    background: $darker-gray;
+    color: $gray;
+    font-size: .8rem;
+  }
+  .credits a {
+    color: $white;
+    font-weight: normal;
+    transition: 180ms ease color;
+  }
+  .credits a:hover {
+    color: lighten($purple, 30%)
+  }
+}

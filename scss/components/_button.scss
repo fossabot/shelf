@@ -1,0 +1,38 @@
+// Button Mixin
+@mixin button ($bg:$dark-gray, $color:$white, $hover-bg:darken($dark-gray, 10%), $hover-color:$white) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1em 0 1em 0;
+  padding: .5em;
+  background: $bg;
+  color: $color;
+  font-family: $button-font-family;
+  font-size: .9em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  flex-wrap: wrap;
+  min-height: 4em;
+  max-width: 450px;
+  transition: 180ms ease background, 180ms ease color;
+  // Hover
+  &:hover {
+    background: $hover-bg;
+    color: $hover-color;
+  }
+  // Active
+  &:active {
+    background: darken($hover-bg, 10%);
+  }
+  // Small Screens
+  @media #{$phone} {
+    
+  }
+}
+
+// Button Classes
+.button {
+  @include button;
+}
