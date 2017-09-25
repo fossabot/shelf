@@ -1,5 +1,5 @@
-# extension-main
-This is the repository for the extension refresh project.
+# Shelf
+An open source comic book collection management app.
 
 ## Setup
 
@@ -7,13 +7,13 @@ This is the repository for the extension refresh project.
 1. In the terminal (Linux/MacOS) or Git Bash (Windows), clone the repository:
 
 ```bash
-git clone git@gitlab.com:caesoit/extension-main.git
+git@github.com:gabeotisbenson/shelf.git
 ```
 
 2. Move into the newly-cloned directory:
 
 ```bash
-cd extension-main
+cd shelf
 ```
 
 ### Install dependencies
