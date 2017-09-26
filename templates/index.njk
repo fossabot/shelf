@@ -4,14 +4,11 @@
 	<body>
 		{% include "./partials/header.njk" %}
 		<main>
-		<div class="row">
-			{% include "./partials/components/comic-list.njk" %}
-		</div>
-
-		
-		
-
-
+			{% block main %}
+			<div class="row">
+				{% include "./partials/components/comic-list.njk" %}
+			</div>
+			{% endblock %}
 			{# <h2>Create Your Account</h2>
 			<p>
 				Get started with Shelf now to keep track of what new comics are coming out. Select comics you want and comics you already have to stay on top of your collection.
