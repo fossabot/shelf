@@ -1,0 +1,34 @@
+// Comic List Component
+.comic-list {
+	width: 100%;
+	margin-bottom: 3em;
+	// Flex Container For Title & See More BUtton
+	.comic-list-title-flex {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		// List Title
+		.comic-list-title {
+			flex-grow: 2;
+			font-family: $header-font-family;
+			font-size: 1.2rem;
+		}
+		// See More Button (Tweaking hollow-button Style)
+		.see-more {
+			font-size: 0.6rem;
+			min-width: 100px;
+		}
+	}
+	// Comic Container
+	.comic-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+		@media #{$tablet} {
+			grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+		}
+		@media #{$phone} {
+			grid-template-columns: repeat(auto-fill, minmax(99px, 1fr));
+		}
+		grid-gap: 10px;
+	}
+}

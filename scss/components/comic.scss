@@ -1,0 +1,64 @@
+// Comic Variables
+$cover-width-large: 213px;
+$cover-width-medium: 158.5px;
+$cover-width-small: 99px;
+$cover-height-small: 152px;
+
+// Comic Styles
+.comic {
+	display: block;
+	&:hover .cover-container {
+		-webkit-filter: brightness(60%);
+		filter: brightness(60%);
+	}
+	&:hover .comic-title {
+		text-decoration: underline;
+	}
+	.cover-container {
+		background: $dark-gray;
+		border: 1px solid $gray;
+		overflow: hidden;
+		display: block;
+		// display: flex;
+		// align-items: center;
+		// justify-content: center;
+		height: 290px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		transition: 180ms ease filter;
+		// height: 100%;
+		@media #{$tablet} {
+			height: 300px;
+		}
+		@media #{$phone} {
+			height: 162px;
+		}
+		// .cover {
+		// 	width: 100%;
+		// 	background-position: center;
+		// 	background-repeat: no-repeat;
+		// 	background-size: cover;
+		// 	height: 100%;
+		// }
+	}
+	.comic-title {
+		display: block;
+		color: $green;
+		font-size: .8rem;
+		width: 180px;
+		font-weight: bold;
+		@media #{$tablet} {
+			width: 180px;
+		}
+		@media #{$phone} {
+			width: 99px;
+		}
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

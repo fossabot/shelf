@@ -148,10 +148,7 @@ body {
 
 main {
   flex-grow: 1;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: .5em; }
+  padding: .5em 0 .5em 0; }
 
 .row {
   max-width: 1280px;
@@ -378,3 +375,69 @@ input[type="submit"] {
       background: #ffffff; }
     .log-in-prompt .hollow-button:active {
       background: #cccccc; }
+
+.comic-list {
+  width: 100%;
+  margin-bottom: 3em; }
+  .comic-list .comic-list-title-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .comic-list .comic-list-title-flex .comic-list-title {
+      flex-grow: 2;
+      font-family: "League Spartan", "Helvetica", sans-serif;
+      font-size: 1.2rem; }
+    .comic-list .comic-list-title-flex .see-more {
+      font-size: 0.6rem;
+      min-width: 100px; }
+  .comic-list .comic-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-gap: 10px; }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .comic-list .comic-container {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
+    @media (min-width: 0px) and (max-width: 639px) {
+      .comic-list .comic-container {
+        grid-template-columns: repeat(auto-fill, minmax(99px, 1fr)); } }
+
+.comic {
+  display: block; }
+  .comic:hover .cover-container {
+    -webkit-filter: brightness(60%);
+    filter: brightness(60%); }
+  .comic:hover .comic-title {
+    text-decoration: underline; }
+  .comic .cover-container {
+    background: #3c3c3c;
+    border: 1px solid #cccccc;
+    overflow: hidden;
+    display: block;
+    height: 290px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 180ms ease filter; }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .comic .cover-container {
+        height: 300px; } }
+    @media (min-width: 0px) and (max-width: 639px) {
+      .comic .cover-container {
+        height: 162px; } }
+  .comic .comic-title {
+    display: block;
+    color: #087E8B;
+    font-size: .8rem;
+    width: 180px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .comic .comic-title {
+        width: 180px; } }
+    @media (min-width: 0px) and (max-width: 639px) {
+      .comic .comic-title {
+        width: 99px; } }
+    .comic .comic-title:hover {
+      text-decoration: underline; }
