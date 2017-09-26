@@ -19,9 +19,6 @@ $cover-height-small: 152px;
 		border: 1px solid $gray;
 		overflow: hidden;
 		display: block;
-		// display: flex;
-		// align-items: center;
-		// justify-content: center;
 		height: 290px;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -34,13 +31,6 @@ $cover-height-small: 152px;
 		@media #{$phone} {
 			height: 162px;
 		}
-		// .cover {
-		// 	width: 100%;
-		// 	background-position: center;
-		// 	background-repeat: no-repeat;
-		// 	background-size: cover;
-		// 	height: 100%;
-		// }
 	}
 	.comic-title {
 		display: block;
