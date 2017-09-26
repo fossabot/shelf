@@ -1,0 +1,85 @@
+.collection-count {
+	margin-top: .2em;
+	margin-bottom: 3em;
+	// Desktop View
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	// Tablet View
+	@media #{$tablet} {
+		display: flex;
+	}
+	// Phone View
+	@media #{$phone} {
+		display: block;
+	}
+	// Wish List & Collection Global Styles
+	.wish-list, .collection {
+		// Desktop View
+		width: 50%;
+		// Tablet View
+		@media #{$tablet} {
+			width: 50%;
+		}
+		// Phone View
+		@media #{$phone} {
+			display: flex;
+			width: 100%;
+		}
+		// Global Styles
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 1em;
+		transition: 180ms ease background;
+		color: $white;
+	}
+	// Margin For Desktop Styles
+	.wish-list {
+		margin-right: .7em;
+	}
+	// Wish List Styles
+	.wish-list {
+		background: $want-bg;
+		margin-bottom: 1em;
+		.feather-heart {
+			fill: $white;
+			width: 48px;
+			height: 48px;
+		}
+		&:hover {
+			background: darken($want-bg, 15%);
+		}
+	}
+	// Collection Styles
+	.collection {
+		background: $have-bg;
+		.feather-check-circle {
+			width: 48px;
+			height: 48px;
+		}
+		&:hover {
+			background: darken($have-bg, 10%);
+		}
+	}
+}
+
+.collection-count .count-container {
+	flex-grow: 2;
+	margin-left: 1em;
+	.count-description {
+		display: block;
+		text-transform: uppercase;
+		font-family: $header-font-family;
+		font-size: .7rem;
+		color: $white;
+	}
+	.count-number {
+		display: block;
+		font-family: $header-font-family;
+		font-size: 3rem;
+		color: $white;
+		text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+	}
+}

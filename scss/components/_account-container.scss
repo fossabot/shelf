@@ -1,0 +1,14 @@
+.account-container {
+	.email, .password {
+		display: flex;
+		color: $dark-gray;
+	}
+	.account-detail {
+		font-size: .9rem;
+		color: $dark-gray;
+	}
+	.strong {
+		font-weight: bold;
+		width: 100px;
+	}
+}

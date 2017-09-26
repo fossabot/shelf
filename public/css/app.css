@@ -441,3 +441,78 @@ input[type="submit"] {
         width: 99px; } }
     .comic .comic-title:hover {
       text-decoration: underline; }
+
+.collection-count {
+  margin-top: .2em;
+  margin-bottom: 3em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .collection-count {
+      display: flex; } }
+  @media (min-width: 0px) and (max-width: 639px) {
+    .collection-count {
+      display: block; } }
+  .collection-count .wish-list, .collection-count .collection {
+    width: 50%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1em;
+    transition: 180ms ease background;
+    color: #ffffff; }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .collection-count .wish-list, .collection-count .collection {
+        width: 50%; } }
+    @media (min-width: 0px) and (max-width: 639px) {
+      .collection-count .wish-list, .collection-count .collection {
+        display: flex;
+        width: 100%; } }
+  .collection-count .wish-list {
+    margin-right: .7em; }
+  .collection-count .wish-list {
+    background: #D70A3D;
+    margin-bottom: 1em; }
+    .collection-count .wish-list .feather-heart {
+      fill: #ffffff;
+      width: 48px;
+      height: 48px; }
+    .collection-count .wish-list:hover {
+      background: #8e0728; }
+  .collection-count .collection {
+    background: #087E8B; }
+    .collection-count .collection .feather-check-circle {
+      width: 48px;
+      height: 48px; }
+    .collection-count .collection:hover {
+      background: #05525b; }
+
+.collection-count .count-container {
+  flex-grow: 2;
+  margin-left: 1em; }
+  .collection-count .count-container .count-description {
+    display: block;
+    text-transform: uppercase;
+    font-family: "League Spartan", "Helvetica", sans-serif;
+    font-size: .7rem;
+    color: #ffffff; }
+  .collection-count .count-container .count-number {
+    display: block;
+    font-family: "League Spartan", "Helvetica", sans-serif;
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); }
+
+.account-container .email, .account-container .password {
+  display: flex;
+  color: #3c3c3c; }
+
+.account-container .account-detail {
+  font-size: .9rem;
+  color: #3c3c3c; }
+
+.account-container .strong {
+  font-weight: bold;
+  width: 100px; }
