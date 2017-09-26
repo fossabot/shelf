@@ -6,6 +6,14 @@ $cover-height-small: 152px;
 
 // Comic Styles
 .comic {
+	display: block;
+	&:hover .cover-container {
+		-webkit-filter: brightness(60%);
+		filter: brightness(60%);
+	}
+	&:hover .comic-title {
+		text-decoration: underline;
+	}
 	.cover-container {
 		background: $dark-gray;
 		border: 1px solid $gray;
@@ -25,10 +33,6 @@ $cover-height-small: 152px;
 		}
 		@media #{$phone} {
 			height: 162px;
-		}
-		&:hover {
-			-webkit-filter: brightness(60%);
-			filter: brightness(60%);
 		}
 		// .cover {
 		// 	width: 100%;

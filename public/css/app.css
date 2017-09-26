@@ -377,7 +377,8 @@ input[type="submit"] {
       background: #cccccc; }
 
 .comic-list {
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 3em; }
   .comic-list .comic-list-title-flex {
     display: flex;
     justify-content: space-between;
@@ -400,40 +401,43 @@ input[type="submit"] {
       .comic-list .comic-container {
         grid-template-columns: repeat(auto-fill, minmax(99px, 1fr)); } }
 
-.comic .cover-container {
-  background: #3c3c3c;
-  border: 1px solid #cccccc;
-  overflow: hidden;
-  display: block;
-  height: 290px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 180ms ease filter; }
-  @media (min-width: 640px) and (max-width: 1023px) {
-    .comic .cover-container {
-      height: 300px; } }
-  @media (min-width: 0px) and (max-width: 639px) {
-    .comic .cover-container {
-      height: 162px; } }
-  .comic .cover-container:hover {
+.comic {
+  display: block; }
+  .comic:hover .cover-container {
     -webkit-filter: brightness(60%);
     filter: brightness(60%); }
-
-.comic .comic-title {
-  display: block;
-  color: #087E8B;
-  font-size: .8rem;
-  width: 180px;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
-  @media (min-width: 640px) and (max-width: 1023px) {
-    .comic .comic-title {
-      width: 180px; } }
-  @media (min-width: 0px) and (max-width: 639px) {
-    .comic .comic-title {
-      width: 99px; } }
-  .comic .comic-title:hover {
+  .comic:hover .comic-title {
     text-decoration: underline; }
+  .comic .cover-container {
+    background: #3c3c3c;
+    border: 1px solid #cccccc;
+    overflow: hidden;
+    display: block;
+    height: 290px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 180ms ease filter; }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .comic .cover-container {
+        height: 300px; } }
+    @media (min-width: 0px) and (max-width: 639px) {
+      .comic .cover-container {
+        height: 162px; } }
+  .comic .comic-title {
+    display: block;
+    color: #087E8B;
+    font-size: .8rem;
+    width: 180px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .comic .comic-title {
+        width: 180px; } }
+    @media (min-width: 0px) and (max-width: 639px) {
+      .comic .comic-title {
+        width: 99px; } }
+    .comic .comic-title:hover {
+      text-decoration: underline; }
