@@ -1,0 +1,36 @@
+@mixin secondary-header($bg, $color) {
+	background: $bg;
+	color: $color;
+	border-bottom: 1px solid $bg;
+	.header-content {
+		@include row;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 0 .5em 0 .5em;
+		height: 50px;
+	}
+	svg {
+		color: $color;
+	}
+	.feather-arrow-left {
+		margin-right: 1em;
+	}
+	.feather-heart {
+		fill: $color;
+	}
+	.title {
+		color: $color;
+		margin-left: .5em;
+		flex-grow: 2;
+	}
+}
+
+// Secondary Header Classes
+.want-header {
+	@include secondary-header($want-bg, $white);
+}
+
+.have-header {
+	@include secondary-header($have-bg, $white);
+}

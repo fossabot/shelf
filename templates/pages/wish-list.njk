@@ -1,0 +1,22 @@
+{% extends "../index.njk" %}
+
+{% block header %}
+<header class="want-header">
+	<div class="header-content">
+		<!-- Back Arrow -->
+		<a class="arrow-left" href="/profile"><i data-feather="arrow-left"></i></a>
+		<!-- Want Icon -->
+		<i data-feather="heart"></i>
+		<!-- Title -->
+		<h1 class="title">Your Wish List</h1>
+		<!-- Filter Button -->
+		<a href="#"><i data-feather="filter"></i></a>
+	</div>
+</header>
+{% endblock %}
+
+{% block main %}
+<div class="row">
+	{% include "../partials/components/comic-list.njk" %}
+</div>
+{% endblock %}
