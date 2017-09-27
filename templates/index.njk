@@ -2,7 +2,9 @@
 <html lang="en">
 	{% include "./partials/head.njk" %}
 	<body>
+		{% block header %}
 		{% include "./partials/header.njk" %}
+		{% endblock %}
 		<main>
 			{% block main %}
 			<div class="row">
