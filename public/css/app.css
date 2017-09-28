@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 .test {
   display: block;
   background: #FF5C61; }
@@ -699,4 +699,39 @@ input[type="submit"] {
     justify-content: flex-start; }
     .status-bar .status-bar-content a {
       color: #3c3c3c;
-      margin-right: 1em; }
+      margin-right: 1em;
+      transition: 180ms ease color; }
+    .status-bar .status-bar-content a:hover {
+      color: #000000; }
+
+.want {
+  background: #D70A3D;
+  color: #ffffff;
+  border-bottom: 1px solid #D70A3D; }
+  .want svg {
+    margin-right: 1em; }
+  .want .status-message {
+    display: block;
+    font-family: "League Spartan", "Helvetica", sans-serif;
+    font-size: 1rem;
+    margin-top: .2em;
+    color: #ffffff; }
+  .want:hover {
+    color: #ffffff; }
+  .want svg {
+    fill: #ffffff; }
+
+.have {
+  background: #087E8B;
+  color: #ffffff;
+  border-bottom: 1px solid #087E8B; }
+  .have svg {
+    margin-right: 1em; }
+  .have .status-message {
+    display: block;
+    font-family: "League Spartan", "Helvetica", sans-serif;
+    font-size: 1rem;
+    margin-top: .2em;
+    color: #ffffff; }
+  .have:hover {
+    color: #ffffff; }
