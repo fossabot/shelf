@@ -34,3 +34,70 @@
 .have-header {
 	@include secondary-header($have-bg, $white);
 }
+
+.banner-header {
+	@include secondary-header(none, $white);
+	position: relative;
+	box-shadow: none;
+	border: none;
+	height: 20em;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	transition: 180ms ease filter;
+	&:after {
+		background: rgba(0, 0, 0, .5);
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1; 
+	}
+	.header-content {
+		position: relative;
+		z-index: 20;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		box-sizing: border-box;
+		.arrow-left {
+			flex-grow: 2;
+		}
+	}
+	.banner-titles {
+		@include row();
+		position: relative;
+		z-index: 20;
+		width: 100%;
+		box-sizing: border-box;
+		h1 {
+			color: $white;
+		}
+		h1:after {
+			content: "";
+			display: block;
+			width: 50px;
+			height: 5px;
+			margin: .5em 0 1em 0;
+			background: $white;
+		}
+		.volume {
+			display: block;
+			font-family: $header-font-family;
+			color: $white;
+		}
+		.publish-date {
+			display: block;
+			color: $white;
+			font-size: .8rem;
+		}
+		.publisher {
+			display: block;
+			color: $white;
+			font-size: .8rem;
+		}
+	}
+}

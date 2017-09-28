@@ -21,7 +21,7 @@ body {
 
 main {
   flex-grow: 1;
-  padding: 4em 0 .5em 0;
+  padding: .5em 0 .5em 0;
 }
 
 .row {
@@ -88,4 +88,36 @@ a {
   &:active {
     color: $icon-active-color;
   }
+}
+
+// Series / Volume / Issue View
+// ----------------------------
+
+.detail-title {
+	display: block;
+	font-size: .8rem;
+	font-weight: bold;
+	margin-bottom: .5em;
+}
+
+.detail-summary {
+	margin-bottom: 2em;
+}
+
+// Issue View Specific Styles:
+.issue-flex-container {
+	width: 100%;
+	margin-bottom: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	&>div {
+		width: 50%;
+	}
+}
+
+.detail-date, .detail-price {
+	display: block;
+	font-size: 2rem;
+	font-family: $header-font-family;
 }
