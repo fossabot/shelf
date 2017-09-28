@@ -1,0 +1,56 @@
+{% extends "../index.njk" %}
+
+{% block header %}
+<header class="banner-header" style="background-image: url(./images/sample-cover-large.jpg);">
+	<div class="header-content">
+		<!-- Back Arrow -->
+		<a class="arrow-left" href="/profile"><i data-feather="arrow-left"></i></a>
+    	<!-- Search Button / Trigger -->
+    	<a href="#" class="icon search-icon"><i data-feather="search"></i></a>
+    	<!-- Profile Link -->
+    	<a href="/profile" class="icon profile-icon"><i data-feather="user"></i></a>
+	</div>
+	<div class="banner-titles">
+		<!-- Issue Title -->
+		<h1>Issue Title</h1>
+		<!-- Volume -->
+		<a href="#" class="volume">Volume Name Vol. 1</a>
+		<!-- Publish Date -->
+		<span class="publish-date">2007 - 2010</span>
+		<!-- Publisher -->
+		<span class="publisher">Marvel Comics</span>
+	</div>
+</header>
+
+{% include "../partials/components/status-bar.njk" %}
+
+{% endblock %}
+
+{% block main %}
+<div class="row">
+	<div class="issue-flex-container">
+		<div>
+			<span class="detail-title">Cover Date</span>
+			<span class="detail-date">AUG 1990</span>
+		</div>
+		<div>
+			<span class="detail-title">Cover Price</span>
+			<span class="detail-price">$1.75</span>
+		</div>
+	</div>
+	<span class="detail-title">Summary</span>
+	<div class="detail-summary">
+		Enim proident pariatur duis occaecat laborum sint adipisicing aute excepteur fugiat qui. Fugiat eu culpa dolore labore reprehenderit. Incididunt cillum tempor dolor esse aute dolor in mollit. Irure ad proident elit cillum reprehenderit labore sint elit ut laboris sunt.
+	</div>
+	<div class="issue-flex-container">
+		<div>
+			<span class="detail-title">Writers</span>
+			<a class="" href="#">Todd McFarlane</a>
+		</div>
+		<div>
+			<span class="detail-title">Pencilers</span>
+			<a class="" href="#">Todd McFarlane</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
