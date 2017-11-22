@@ -1,0 +1,21 @@
+{
+	"site": {
+		"title": "shelf"
+	},
+	"port": {
+		"prod": 8080,
+		"dev": 3000
+	},
+	"api": {
+		"comicvine": {
+			"key": "[INSERT YOUR KEY HERE]",
+			"url": {
+				"base": "https://comicvine.gamespot.com/api",
+				"params": [
+					"format=json"
+				]
+			}
+		}
+	},
+	"devMode": "false"
+}

@@ -1,13 +1,14 @@
-// Global variables for linter to ignore:
-
 // Import Required Modules
-const express = require('express');
-const nunjucks = require('nunjucks');
-const feather = require('feather-icons');
+const express		= require('express');
+const nunjucks	= require('nunjucks');
+const path			= require('path');
 const app = express();
 
-// Global Variables
-const port = 3000;
+// Load site config
+const config = require(path.join(__dirname, 'config.json'));
+
+// Turn on public folder
+app.use(express.static('public', {index: false}));
 
 // Get nunjucks going
 nunjucks.configure('templates', {
@@ -16,16 +17,18 @@ nunjucks.configure('templates', {
 	express: app
 });
 
-// Turn on public folder
-app.use(express.static('public', {index: false}));
+// Routes
+const routes = {
+	index: require(path.join(__dirname, 'routes/index'))(config),
+	test: require(path.join(__dirname, 'routes/test'))(config)
+};
+app.use('/', routes.index);
+app.use('/test', routes.test);
 
-app.get('/', (req, res) => {
-	res.render('index.njk');
-});
-
+// Pages route, to be removed later
 app.get('/[a-z-]+', (req, res) => {
 	var urlArray = req.url.split('/');
 	res.render('pages/' + urlArray[1] + '.njk');
 });
 
-app.listen(port);
+app.listen(config.devMode ? config.port.dev : config.port.prod);
