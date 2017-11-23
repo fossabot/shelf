@@ -12,9 +12,9 @@
 		</div>
 		<div class="banner-titles">
 			<!-- Issue Title -->
-			<h1>{{ issue.name }}</h1>
+			<h1>{{ issue.volume.name }} #{{ issue.issue_number }}</h1>
 			<!-- Volume -->
-			<a href="#" class="volume">{{ issue.volume.name }} #{{ issue.issue_number }}</a>
+			<a href="#" class="volume">{{ issue.name }}</a>
 			<!-- Publish Date -->
 			<span class="publish-date">[Not in DB Yet]</span>
 			<!-- Publisher -->
@@ -42,11 +42,21 @@
 		<div class="issue-flex-container">
 			<div>
 				<span class="detail-title">Writers</span>
-				<a class="" href="#">[Not in DB Yet]</a>
+				{% set writer = r/writer/ %}
+				{% for person in issue.person_credits %}
+					{% if writer.test(person.role) %}
+						<a class="" href="#">{{ person.name }}</a><br />
+					{% endif %}
+				{% endfor %}
 			</div>
 			<div>
-				<span class="detail-title">Pencilers</span>
-				<a class="" href="#">[Not in DB Yet]</a>
+				<span class="detail-title">Artists</span>
+				{% set artist = r/artist/ %}
+				{% for person in issue.person_credits %}
+					{% if artist.test(person.role) %}
+						<a class="" href="#">{{ person.name }}</a>
+					{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 	</div>
