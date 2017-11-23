@@ -1,0 +1,53 @@
+{% extends "skeletons/default.njk" %}
+
+{% block header %}
+	<header class="banner-header" style="background-image: url({{ issue.image.screen_url }});">
+		<div class="header-content">
+			<!-- Back Arrow -->
+			<a class="arrow-left" href="/profile"><i data-feather="arrow-left"></i></a>
+	    	<!-- Search Button / Trigger -->
+	    	<a href="#" class="icon search-icon"><i data-feather="search"></i></a>
+	    	<!-- Profile Link -->
+	    	<a href="/profile" class="icon profile-icon"><i data-feather="user"></i></a>
+		</div>
+		<div class="banner-titles">
+			<!-- Issue Title -->
+			<h1>{{ issue.name }}</h1>
+			<!-- Volume -->
+			<a href="#" class="volume">{{ issue.volume.name }} #{{ issue.issue_number }}</a>
+			<!-- Publish Date -->
+			<span class="publish-date">[Not in DB Yet]</span>
+			<!-- Publisher -->
+			<span class="publisher">[Not in DB Yet]</span>
+		</div>
+	</header>
+	{% include "components/status-bar.njk" %}
+{% endblock %}
+
+{% block main %}
+	<div class="row">
+		<div class="issue-flex-container">
+			<div>
+				<span class="detail-title">Cover Date</span>
+				<span class="detail-date">{{ issue.cover_date | date("MMM YYYY") | upper }}</span>
+			</div>
+			<div>
+				{# Cover Price info not in DB - Gabe 2017-11-22 #}
+				{# <span class="detail-title">Cover Price</span>
+				<span class="detail-price">$1.75</span> #}
+			</div>
+		</div>
+		<span class="detail-title">Summary</span>
+		<div class="detail-summary">{{ issue.description }}</div>
+		<div class="issue-flex-container">
+			<div>
+				<span class="detail-title">Writers</span>
+				<a class="" href="#">[Not in DB Yet]</a>
+			</div>
+			<div>
+				<span class="detail-title">Pencilers</span>
+				<a class="" href="#">[Not in DB Yet]</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
