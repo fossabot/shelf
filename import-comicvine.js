@@ -31,7 +31,7 @@ const getIssues = (volumeID, callback) => {
 };
 
 // Issue caching function
-const cacheIssue = (issue) => {
+const cacheIssue = (issue, callback) => {
 	db.issues.findOne({
 		id: issue.id
 	}, (err, doc) => {
@@ -41,13 +41,14 @@ const cacheIssue = (issue) => {
 			db.issues.insert(issue, (err, doc) => {
 				if (err) console.error(err);
 				if (doc) console.log('Issue ' + issue.id + ' inserted');
+				callback(err);
 			});
 		}
 	});
 };
 
 // Issue getter function
-const getIssue = (issueID) => {
+const getIssue = (issueID, callback) => {
 	const url = genComicVineURL('issue', '4000-' + issueID);
 	request.get({
 		url,
@@ -55,9 +56,10 @@ const getIssue = (issueID) => {
 			'User-Agent': comicvine.userAgent
 		}
 	}, (err, response, body) => {
-		if (err) console.error(err);
-		if (body) {
-			cacheIssue(JSON.parse(body).results);
+		if (err) {
+			callback(err);
+		} else if (body) {
+			cacheIssue(JSON.parse(body).results, callback);
 		}
 	});
 };
@@ -103,50 +105,3 @@ async.waterfall([
 ], (err) => {
 	if (err) console.error(err);
 });
-
-// const insertIssue = (issue) => {
-// 	db.issues.findOne({
-// 		id: issue.id
-// 	}, (err, doc) => {
-// 		if (err) console.error(err);
-// 		if (doc) console.error('issue already imported');
-// 		if (!doc) {
-// 			db.issues.insert(issue, (err) => {
-// 				if (err) console.error(err);
-// 				if (!err) console.log('Inserted Issue #' + issue.issue_number);
-// 			});
-// 		}
-// 	});
-// };
-//
-// volumes.forEach((volume) => {
-// 	console.log('Getting ' + volume);
-// 	let offset = 0;
-// 	let numRequests = 0;
-// 	getIssues(volume, offset, (err, data) => {
-// 		if (err) {
-// 			console.error(err);
-// 			process.exit(1);
-// 		} else {
-// 			offset += 100;
-// 			numRequests = Math.ceil(data.number_of_total_results / 100);
-// 			const issues = data.results;
-// 			totalImported += issues.length;
-// 			for (let issue of issues) insertIssue(issue);
-// 			for (let i = 1; i < numRequests; ++i) {
-// 				getIssues(volume, offset, (err, data) => {
-// 					if (err) {
-// 						console.error(err);
-// 						process.exit(1);
-// 					} else {
-// 						offset += 100;
-// 						const issues = data.results;
-// 						totalImported += issues.length;
-// 						for (let issue of issues) insertIssue(issue);
-// 						console.log(totalImported);
-// 					}
-// 				});
-// 			}
-// 		}
-// 	});
-// });
