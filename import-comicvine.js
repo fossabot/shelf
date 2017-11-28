@@ -1,107 +1,88 @@
+// Import config
+const config = require('./config.json');
+
 // Import modules
 const mongojs	= require('mongojs');
-const request	= require('request');
-const async		= require('async');
+const comicvine	= require('./modules/comicvine')(config.api.comicvine);
 
 // Connect to database
 const db = mongojs('shelf');
 
-// Import config
-const config = require('./config.json');
-const comicvine = config.api.comicvine;
-
-// Construct comicvine URL
-const genComicVineURL = (resource, addURL) => comicvine.url.base + '/' + resource + (addURL ? '/' + addURL : '') + '?format=json&api_key=' + comicvine.key;
-
-// Issue list getter function
-const getIssues = (volumeID, callback) => {
-	const url = genComicVineURL('issues') + '&field_list=id&filter=volume:' + volumeID;
-	request.get({
-		url,
-		headers: {
-			'User-Agent': comicvine.userAgent
-		}
-	}, (err, response, body) => {
-		if (err) {
-			callback(err);
-		} else {
-			callback(null, JSON.parse(body).results);
-		}
-	});
-};
-
-// Issue caching function
-const cacheIssue = (issue, callback) => {
-	db.issues.findOne({
-		id: issue.id
+// Caching function
+const cache = (collection, object, callback = () => {}) => {
+	db.collection(collection).findOne({
+		id: object.id
 	}, (err, doc) => {
 		if (err) console.error(err);
-		if (doc) console.error('Issue already cached');
+		if (doc) console.error(collection + ' already cached');
 		if (!doc) {
-			db.issues.insert(issue, (err, doc) => {
+			db.collection(collection).insert(object, (err, doc) => {
 				if (err) console.error(err);
-				if (doc) console.log('Issue ' + issue.id + ' inserted');
+				if (doc) console.log(collection + ' ' + object.id + ' inserted');
 				callback(err);
 			});
-		}
-	});
-};
-
-// Issue getter function
-const getIssue = (issueID, callback) => {
-	const url = genComicVineURL('issue', '4000-' + issueID);
-	request.get({
-		url,
-		headers: {
-			'User-Agent': comicvine.userAgent
-		}
-	}, (err, response, body) => {
-		if (err) {
-			callback(err);
-		} else if (body) {
-			cacheIssue(JSON.parse(body).results, callback);
 		}
 	});
 };
 
 // Let's get going!
-async.waterfall([
-	(callback) => {
-		// Volume IDs
-		const volumes = [
-			55330,	// Hickman's New Avengers run
-			85076,	// Slott's current Amazing Spider-Man run
-			86408,	// Totally Awesome Hulk
-			95596,	// Invincible Iron Man
-			85128		// Paper Girls
-		];
-		// Issue IDs array, to be populated later
-		let issues = [];
-		async.each(volumes, (volume, doneWithVolume) => {
-			getIssues(volume, (err, issuesArr) => {
+// Volume IDs
+const volumeIDs = [
+	3519,		// Web of Spider-Man
+	2045,		// Fantastic Four
+	18937,	// Star Wars: Knights of the Old Republic
+	85128,	// Paper Girls
+	95402		// Avengers
+];
+// Loop through each ID
+volumeIDs.forEach((volumeID) => {
+	// Get the volume
+	comicvine.getVolumeByID(volumeID, (err, volume) => {
+		if (err) {
+			console.error(err);
+		} else {
+			// Cache the volume
+			cache('volumes', volume);
+			// Get the volume's publisher
+			comicvine.getPublisherByID(volume.publisher.id, (err, publisher) => {
 				if (err) {
-					doneWithVolume(err);
+					console.error(err);
 				} else {
-					async.each(issuesArr, (issue, doneWithIssue) => {
-						issues.push(issue.id);
-						doneWithIssue();
-					}, doneWithVolume);
+					// Cache the publisher
+					cache('publishers', publisher);
 				}
 			});
-		}, (err) => {
-			if (err) {
-				callback(err);
-			} else {
-				callback(null, issues);
-			}
-		});
-	},
-	(issues, callback) => {
-		async.each(issues, (issue, doneWithIssue) => {
-			getIssue(issue);
-			doneWithIssue();
-		}, callback);
-	}
-], (err) => {
-	if (err) console.error(err);
+		}
+	});
+	// Get the Issue IDs
+	comicvine.getIssues({
+		limit: 35,
+		sort: 'cover_date:asc',
+		fieldList: 'id',
+		format: 'json',
+		filter: 'volume:' + volumeID
+	}, (err, issues) => {
+		if (err) {
+			console.error(err);
+		} else {
+			// Loop through each of the issue IDs
+			issues.forEach((issue) => {
+				// Check if we have the issue already
+				db.issues.findOne({ id: issue.id }, (err, doc) => {
+					if (err) console.log('problem searching DB for issue ' + issue.id);
+					if (!doc) {
+						// If it's not in the DB, get the issue
+						comicvine.getIssueByID(issue.id, (err, issue) => {
+							if (err) {
+								console.error(err);
+							} else {
+								// Cache the issue
+								cache('issues', issue);
+							}
+						});
+					}
+				});
+			});
+		}
+	});
 });

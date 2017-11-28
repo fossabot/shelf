@@ -15,12 +15,41 @@ module.exports = (config) => {
 		db.issues.findOne({
 			id: Number(req.params.id)
 		}, (err, issue) => {
-			console.log(issue);
-			if (err) console.error(err);
-			res.render('pages/issue.njk', {
-				site: config.site,
-				issue
-			});
+			if (err) {
+				res.render('pages/error.njk', {
+					site: config.site,
+					status: 500
+				});
+			} else {
+				db.volumes.findOne({
+					id: issue.volume.id
+				}, (err, volume) => {
+					if (err) {
+						res.render('pages/error.njk', {
+							site: config.site,
+							status: 500
+						});
+					} else {
+						db.publishers.findOne({
+							id: volume.publisher.id
+						}, (err, publisher) => {
+							if (err) {
+								res.render('pages/error.njk', {
+									site: config.site,
+									status: 500
+								});
+							} else {
+								res.render('pages/issue.njk', {
+									site: config.site,
+									issue,
+									volume,
+									publisher
+								});
+							}
+						});
+					}
+				});
+			}
 		});
 	});
 
