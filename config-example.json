@@ -23,5 +23,5 @@
 			"userAgent": "[YOUR UNIQUE USER AGENT]"
 		}
 	},
-	"devMode": "false"
+	"devMode": false
 }

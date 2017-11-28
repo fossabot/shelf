@@ -12,13 +12,13 @@
 		</div>
 		<div class="banner-titles">
 			<!-- Issue Title -->
-			<h1>{{ issue.volume.name }} #{{ issue.issue_number }}</h1>
+			<h1>{{ issue.name }}</h1>
 			<!-- Volume -->
-			<a href="#" class="volume">{{ issue.name }}</a>
+			<a href="#" class="volume">{{ volume.name }} {{ volume.deck }}</a>
 			<!-- Publish Date -->
-			<span class="publish-date">[Not in DB Yet]</span>
+			<span class="publish-date">{{ volume.start_year }}</span>
 			<!-- Publisher -->
-			<span class="publisher">[Not in DB Yet]</span>
+			<span class="publisher">{{ publisher.name }}</span>
 		</div>
 	</header>
 	{% include "components/status-bar.njk" %}
@@ -51,7 +51,7 @@
 			</div>
 			<div>
 				<span class="detail-title">Artists</span>
-				{% set artist = r/artist/ %}
+				{% set artist = r/artist|penciler/ %}
 				{% for person in issue.person_credits %}
 					{% if artist.test(person.role) %}
 						<a class="" href="#">{{ person.name }}</a>
