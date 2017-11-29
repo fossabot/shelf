@@ -15,7 +15,8 @@ module.exports = (config) => {
 			if (err) console.error(err);
 			res.render('index.njk', {
 				site: config.site,
-				issues: docs
+				issues: docs,
+				comicvineURL: config.api.comicvine.url.base
 			});
 		});
 	});
