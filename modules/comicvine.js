@@ -41,7 +41,9 @@ module.exports = (comicvine) => {
 		publisher: (id, options = { format: 'json' }) => {
 			if (!id) return -1;
 			if (typeof options.format === 'undefined') options.format = 'json';
-			let url = comicvine.url.base + '/publisher/4010-' + id + '?api_key=' + comicvine.key + '&format=' + options.format;
+			// Bugfix 2017-12-01, retrieves everything but "characters", because that currently causes a 502 at comicvine
+			// let url = comicvine.url.base + '/publisher/4010-' + id + '?api_key=' + comicvine.key + '&format=' + options.format;
+			let url = comicvine.url.base + '/publisher/4010-' + id + '?api_key=' + comicvine.key + '&format=' + options.format + '&field_list=aliases,api_detail_url,date_added,date_last_updated,deck,description,id,image,location_address,location_city,location_state,name,site_detail_url,story_arcs,teams,volumes';
 			if (options.fieldList) url += '&field_list=' + options.fieldList;
 			return url;
 		},
