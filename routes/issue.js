@@ -41,6 +41,7 @@ module.exports = (config) => {
 							} else {
 								res.render('pages/issue.njk', {
 									site: config.site,
+									comicvineURL: config.api.comicvine.url.base,
 									issue,
 									volume,
 									publisher

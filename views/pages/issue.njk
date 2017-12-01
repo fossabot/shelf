@@ -1,7 +1,7 @@
 {% extends "skeletons/default.njk" %}
 
 {% block header %}
-	<header class="banner-header" style="background-image: url({{ issue.image.screen_url }});">
+	<header class="banner-header" style="background-image: url({{ issue.image.screen_url | replace(comicvineURL, '') }});">
 		<div class="header-content">
 			<!-- Back Arrow -->
 			<a class="arrow-left" href="/profile"><i data-feather="arrow-left"></i></a>
