@@ -212,6 +212,10 @@ a {
 
 .detail-summary {
   margin-bottom: 2em; }
+  .detail-summary em {
+    font-style: normal; }
+  .detail-summary h4, .detail-summary h3, .detail-summary h2, .detail-summary table {
+    display: none; }
 
 .issue-flex-container {
   width: 100%;
