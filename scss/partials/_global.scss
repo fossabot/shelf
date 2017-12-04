@@ -102,6 +102,18 @@ a {
 
 .detail-summary {
 	margin-bottom: 2em;
+	// Hide all content except first paragraph.
+	// This is due to the wiki nature of oringinal content.
+	// p:not(:nth-child(2)) {
+	// 	display: none;
+	// }
+	em {
+		font-style: normal;
+	}
+	// Hide all the other random stuff.
+	h4, h3, h2, table {
+		display: none;
+	}
 }
 
 // Issue View Specific Styles:
