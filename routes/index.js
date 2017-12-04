@@ -11,7 +11,7 @@ module.exports = (config) => {
 
 	// Our home route
 	router.get('/', (req, res) => {
-		db.issues.find({}).limit(14, (err, docs) => {
+		db.issues.find({}).limit(15, (err, docs) => {
 			if (err) console.error(err);
 			res.render('index.njk', {
 				site: config.site,
