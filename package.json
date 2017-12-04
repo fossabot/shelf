@@ -43,5 +43,10 @@
     "url": "https://github.com/gabeotisbenson/shelf/issues"
   },
   "homepage": "",
-  "devDependencies": {}
+  "devDependencies": {},
+	"nodemonConfig": {
+		"ignore": [
+			"public/*"
+		]
+	}
 }

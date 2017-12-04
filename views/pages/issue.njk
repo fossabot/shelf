@@ -1,10 +1,13 @@
 {% extends "skeletons/default.njk" %}
 
+{% set volume = issue.volume %}
+{% set publisher = volume.publisher %}
+
 {% block header %}
 	<header class="banner-header" style="background-image: url({{ issue.image.screen_url | replace(comicvineURL, '') }});">
 		<div class="header-content">
 			<!-- Back Arrow -->
-			<a class="arrow-left" href="/profile"><i data-feather="arrow-left"></i></a>
+			<a class="arrow-left" href="{{ referer or "/profile" }}"><i data-feather="arrow-left"></i></a>
 	    	<!-- Search Button / Trigger -->
 	    	<a href="#" class="icon search-icon"><i data-feather="search"></i></a>
 	    	<!-- Profile Link -->

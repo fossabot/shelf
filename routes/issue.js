@@ -10,45 +10,64 @@ module.exports = (config) => {
 	// Create our router
 	const router = express.Router();
 
-	// Our home route
+	// Our issue detail route
 	router.get('/:id', (req, res) => {
-		db.issues.findOne({
-			id: Number(req.params.id)
-		}, (err, issue) => {
-			if (err) {
+		// Convert the ID to an actual number
+		const issueID = Number(req.params.id);
+		// Then do our lookup
+		db.issues.aggregate([
+			// First, just find the issue
+			{
+				$match: {
+					id: issueID
+				}
+			},
+			// Then, find the associated volume
+			{
+				$lookup: {
+					from: 'volumes',
+					localField: 'volume.id',
+					foreignField: 'id',
+					as: 'volume'
+				}
+			},
+			// The volume gets put in an array, so we have to unwind out of it
+			{
+				$unwind: {
+					path: '$volume'
+				}
+			},
+			// Then, find the publisher
+			{
+				$lookup: {
+					from: 'publishers',
+					localField: 'volume.publisher.id',
+					foreignField: 'id',
+					as: 'volume.publisher'
+				}
+			},
+			// Gotta unwind this too
+			{
+				$unwind: {
+					path: '$volume.publisher'
+				}
+			}
+		], (err, issue) => {
+			if (err || issue.length < 1) {
 				res.render('pages/error.njk', {
 					site: config.site,
-					status: 500
+					status: err ? 500 : 404
 				});
 			} else {
-				db.volumes.findOne({
-					id: issue.volume.id
-				}, (err, volume) => {
-					if (err) {
-						res.render('pages/error.njk', {
-							site: config.site,
-							status: 500
-						});
-					} else {
-						db.publishers.findOne({
-							id: volume.publisher.id
-						}, (err, publisher) => {
-							if (err) {
-								res.render('pages/error.njk', {
-									site: config.site,
-									status: 500
-								});
-							} else {
-								res.render('pages/issue.njk', {
-									site: config.site,
-									comicvineURL: config.api.comicvine.url.base,
-									issue,
-									volume,
-									publisher
-								});
-							}
-						});
-					}
+				// Gets returned as an array, but we just need the first element (there
+				// should only be one element anyway)
+				issue = issue[0];
+				// Show the page already!
+				res.render('pages/issue.njk', {
+					site: config.site,
+					comicvineURL: config.api.comicvine.url.base,
+					issue,
+					referer: req.headers.referer
 				});
 			}
 		});
