@@ -53,7 +53,33 @@ input::placeholder {
 // Input Styles
 // ------------
 
-input[type="text"], input[type="submit"], input[type="number"], input[type="email"], input[type="password"] {
+// input[type="text"]:valid,
+// input[type=number]:valid,
+// input[type="email"]:valid,
+// input[type=password]:valid {
+// 	border: 2px solid green;
+// }
+//
+// input[type="text"]:invalid,
+// input[type=number]:invalid,
+// input[type="email"]:invalid,
+// input[type=password]:invalid {
+// 	border: 2px solid red;
+// }
+
+.valid {
+	border: 2px solid green;
+}
+
+.invalid {
+	border: 2px solid red;
+}
+
+input[type="text"],
+input[type="submit"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
 	width: 100%;
 	box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -80,6 +106,8 @@ input[type="text"], input[type="submit"], input[type="number"], input[type="emai
 		border-color: $dark-gray;
 	}
 }
+
+
 
 // Submit Styles
 // -------------

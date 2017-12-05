@@ -177,6 +177,9 @@ h2 {
   font-size: 1.3rem;
   margin: .5em 0 .5em 0; }
 
+h3 {
+  margin: 1em 0 1em 0; }
+
 body {
   font-family: "Open Sans", "Helvetica", sans-serif;
   font-size: .9rem; }
@@ -230,6 +233,38 @@ a {
   display: block;
   font-size: 2rem;
   font-family: "League Spartan", "Helvetica", sans-serif; }
+
+.login-container, .register-container {
+  margin-top: 5em; }
+  .login-container .title, .register-container .title {
+    font-family: "League Spartan", "Helvetica", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: .5em;
+    text-transform: uppercase; }
+  .login-container .login-flex, .register-container .login-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; }
+  .login-container form, .register-container form {
+    width: 100%;
+    max-width: 500px; }
+    .login-container form .register-link, .login-container form .login-link, .register-container form .register-link, .register-container form .login-link {
+      margin-bottom: 1em;
+      display: block; }
+
+.coppa-check {
+  margin-bottom: 1em;
+  display: flex; }
+  .coppa-check input {
+    margin-right: .5em;
+    cursor: pointer; }
+  .coppa-check label {
+    display: inline;
+    font-family: "Open Sans", "Helvetica", sans-serif;
+    font-size: .8rem;
+    cursor: pointer; }
 
 .button {
   display: flex;
@@ -314,7 +349,17 @@ input::placeholder {
   color: #C9C9C9;
   opacity: 1; }
 
-input[type="text"], input[type="submit"], input[type="number"], input[type="email"], input[type="password"] {
+.valid {
+  border: 2px solid green; }
+
+.invalid {
+  border: 2px solid red; }
+
+input[type="text"],
+input[type="submit"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
   width: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -329,13 +374,25 @@ input[type="text"], input[type="submit"], input[type="number"], input[type="emai
   padding: 0 1em 0 1em;
   display: block;
   transition: 180ms border ease; }
-  input[type="text"]::placeholder, input[type="submit"]::placeholder, input[type="number"]::placeholder, input[type="email"]::placeholder, input[type="password"]::placeholder {
+  input[type="text"]::placeholder,
+  input[type="submit"]::placeholder,
+  input[type="number"]::placeholder,
+  input[type="email"]::placeholder,
+  input[type="password"]::placeholder {
     color: #C9C9C9;
     font-weight: bold;
     font-size: 1.3em; }
-  input[type="text"]:hover, input[type="submit"]:hover, input[type="number"]:hover, input[type="email"]:hover, input[type="password"]:hover {
+  input[type="text"]:hover,
+  input[type="submit"]:hover,
+  input[type="number"]:hover,
+  input[type="email"]:hover,
+  input[type="password"]:hover {
     border: 2px solid #a6a6a6; }
-  input[type="text"]:focus, input[type="submit"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  input[type="text"]:focus,
+  input[type="submit"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
     border-color: #3c3c3c; }
 
 input[type="submit"] {

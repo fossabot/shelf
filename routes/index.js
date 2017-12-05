@@ -21,5 +21,40 @@ module.exports = (config) => {
 		});
 	});
 
+	// About Route
+	router.get('/about', (req, res) => {
+		res.render('pages/about.njk', {
+			site: config.site
+		});
+	});
+
+	// Privacy Route
+	router.get('/privacy', (req, res) => {
+		res.render('pages/privacy.njk', {
+			site: config.site
+		});
+	});
+
+	// Legal Route
+	router.get('/legal', (req, res) => {
+		res.render('pages/legal.njk', {
+			site: config.site
+		});
+	});
+
+	// Login Route
+	router.get('/login', (req, res) => {
+		res.render('pages/login.njk', {
+			site: config.site
+		});
+	});
+
+	// Register Route
+	router.get('/register', (req, res) => {
+		res.render('pages/register.njk', {
+			site: config.site
+		});
+	});
+
 	return router;
 };
