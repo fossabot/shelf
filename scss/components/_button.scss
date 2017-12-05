@@ -1,4 +1,4 @@
-// Button Mixin
+// Default Button Mixin
 @mixin button ($bg:$dark-gray, $color:$white, $hover-bg:darken($dark-gray, 10%), $hover-color:$white) {
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
   }
   // Small Screens
   @media #{$phone} {
-    
+
   }
 }
 

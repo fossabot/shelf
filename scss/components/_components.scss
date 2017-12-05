@@ -1,10 +1,14 @@
+// Combines Component SCSS for export
+// ----------------------------------
+
 @import 'button';
 @import 'hollow-button';
 @import 'forms';
 @import 'log-in-prompt';
-@import 'comic-list';
+@import 'comic-grid';
 @import 'comic';
 @import 'collection-count';
 @import 'account-container';
 @import 'secondary-header';
 @import 'status-bar';
+@import 'volume-issue-list';
