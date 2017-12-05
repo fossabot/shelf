@@ -44,9 +44,9 @@
   },
   "homepage": "",
   "devDependencies": {},
-	"nodemonConfig": {
-		"ignore": [
-			"public/*"
-		]
-	}
+  "nodemonConfig": {
+    "ignore": [
+      "public/*"
+    ]
+  }
 }

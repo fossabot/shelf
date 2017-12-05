@@ -1,0 +1,21 @@
+{% extends "skeletons/default.njk" %}
+
+{% block main %}
+	<div class="row">
+		<div class="login-container">
+				<div class="login-flex">
+					<span class="title">Log In</span>
+					<form>
+						<label>Email
+							<input type="email" placeholder="name@example.com" required />
+						</label>
+						<label>Password
+							<input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
+						</label>
+						<a class="register-link" href="/register">Don't have an account? Create one now.</a>
+						<input type="submit" value="Login" />
+					</form>
+				</div>
+		</div>
+	</div>
+{% endblock %}

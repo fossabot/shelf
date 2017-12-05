@@ -47,6 +47,10 @@ h2 {
   margin: .5em 0 .5em 0;
 }
 
+h3 {
+	margin: 1em 0 1em 0;
+}
+
 // Body Fonts
 
 body {
@@ -132,4 +136,50 @@ a {
 	display: block;
 	font-size: 2rem;
 	font-family: $header-font-family;
+}
+
+// Login Form/Page
+// ---------------
+
+.login-container, .register-container {
+	margin-top: 5em;
+	.title {
+		font-family: $header-font-family;
+		font-size: 1rem;
+		font-weight: bold;
+		margin-bottom: .5em;
+		text-transform: uppercase;
+	}
+	.login-flex {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	form {
+		width: 100%;
+		max-width: 500px;
+		.register-link, .login-link {
+			margin-bottom: 1em;
+			display: block;
+		}
+	}
+}
+
+// Register Form/Page
+// ------------------
+
+.coppa-check {
+	margin-bottom: 1em;
+	display: flex;
+	input {
+		margin-right: .5em;
+		cursor: pointer;
+	}
+	label {
+		display: inline;
+		font-family: $paragraph-font-family;
+		font-size: .8rem;
+		cursor: pointer;
+	}
 }

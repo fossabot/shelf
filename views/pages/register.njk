@@ -1,0 +1,28 @@
+{% extends "skeletons/default.njk" %}
+
+{% block main %}
+	<div class="row">
+		<div class="register-container">
+				<div class="login-flex">
+					<span class="title">Create Your Account</span>
+					<form>
+						<label>Email
+							<input type="email" placeholder="name@example.com" required />
+						</label>
+						<label>Password
+							<input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
+						</label>
+						<label>Confirm Password
+							<input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
+						</label>
+						<div class="coppa-check">
+							<input id="coppaCheck" type="checkbox" value="I certify that I am over 13 years old." required />
+							<label for="coppaCheck">I certify that I am over 13 years old and accept the <a href="/privacy">privacy policy</a>.</label>
+						</div>
+						<a class="login-link" href="/login">Already have an account? Log in here.</a>
+						<input type="submit" value="Create Your Account" />
+					</form>
+				</div>
+		</div>
+	</div>
+{% endblock %}
