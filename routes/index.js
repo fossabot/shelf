@@ -56,5 +56,12 @@ module.exports = (config) => {
 		});
 	});
 
+	// Volume Route
+	router.get('/volume', (req, res) => {
+		res.render('pages/volume.njk', {
+			site: config.site
+		});
+	});
+
 	return router;
 };

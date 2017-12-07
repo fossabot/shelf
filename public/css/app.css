@@ -470,29 +470,29 @@ input[type="submit"] {
     .log-in-prompt .hollow-button:active {
       background: #cccccc; }
 
-.comic-list {
+.comic-grid {
   width: 100%;
   margin-bottom: 3em; }
-  .comic-list .comic-list-title-flex {
+  .comic-grid .comic-list-title-flex {
     display: flex;
     justify-content: space-between;
     align-items: center; }
-    .comic-list .comic-list-title-flex .comic-list-title {
+    .comic-grid .comic-list-title-flex .comic-list-title {
       flex-grow: 2;
       font-family: "League Spartan", "Helvetica", sans-serif;
       font-size: 1.2rem; }
-    .comic-list .comic-list-title-flex .see-more {
+    .comic-grid .comic-list-title-flex .see-more {
       font-size: 0.65rem;
       min-width: 100px; }
-  .comic-list .comic-container {
+  .comic-grid .comic-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 10px; }
     @media (min-width: 640px) and (max-width: 1023px) {
-      .comic-list .comic-container {
+      .comic-grid .comic-container {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
     @media (min-width: 0px) and (max-width: 639px) {
-      .comic-list .comic-container {
+      .comic-grid .comic-container {
         grid-template-columns: repeat(auto-fill, minmax(99px, 1fr)); } }
 
 .comic {
@@ -796,3 +796,56 @@ input[type="submit"] {
     color: #ffffff; }
   .have:hover {
     color: #ffffff; }
+
+.comic:nth-of-type(even) {
+  background: #f7f7f7; }
+
+.volume-issue-list .issue-row {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 .5em 0 .5em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50px; }
+  @media (min-width: 0px) and (max-width: 639px) {
+    .volume-issue-list .issue-row {
+      height: 60px; } }
+
+.volume-issue-list .issue-number {
+  margin-right: 1em;
+  border: 2px solid #cccccc;
+  border-radius: .3em;
+  padding: .3em; }
+
+.volume-issue-list .issue-title-and-credits {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 1; }
+  .volume-issue-list .issue-title-and-credits .issue-credits span {
+    font-size: .7rem;
+    font-weight: 400; }
+    @media (min-width: 0px) and (max-width: 639px) {
+      .volume-issue-list .issue-title-and-credits .issue-credits span {
+        display: block; } }
+
+.volume-issue-list .issue-status-container a {
+  margin-right: .5em;
+  color: #cccccc;
+  transition: 180ms ease color; }
+
+.volume-issue-list .issue-status-container a:hover {
+  color: #3c3c3c; }
+
+.volume-issue-list .issue-status-container a svg {
+  width: 20px; }
+
+.do-want svg {
+  fill: #D70A3D;
+  stroke: #D70A3D; }
+
+.do-have svg {
+  stroke: #087E8B;
+  border: #087E8B; }

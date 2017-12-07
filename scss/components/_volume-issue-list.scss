@@ -1,0 +1,74 @@
+// Styles for a list of issues in a volume
+// ---------------------------------------
+
+ .comic:nth-of-type(even) {
+	background: $light-gray;
+}
+
+ .comic {
+	// background: purple;
+}
+
+.volume-issue-list .issue-row {
+	@include row();
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 50px;
+	@media #{$phone} {
+		height: 60px;
+	}
+}
+
+.volume-issue-list {
+	.issue-number {
+		margin-right: 1em;
+		border: 2px solid $gray;
+		border-radius: .3em;
+		padding: .3em;
+	}
+	.issue-title-and-credits {
+		flex-grow: 2;
+		display: flex;
+		flex-direction: column;
+		line-height: 1;
+		.issue-title {
+
+		}
+		.issue-credits span {
+			font-size: .7rem;
+			font-weight: 400;
+			@media #{$phone} {
+				display: block;
+			}
+		}
+	}
+	.issue-status-container {
+		a {
+			margin-right: .5em;
+			color: $gray;
+			transition: 180ms ease color;
+		}
+		a:hover {
+			color:$dark-gray;
+		}
+		a svg {
+			width: 20px;
+		}
+	}
+}
+
+// Icon States (Global)
+.do-want {
+	svg {
+		fill: $want-bg;
+		stroke: $want-bg;
+	}
+}
+
+.do-have {
+	svg {
+		stroke: $have-bg;
+		border: $have-bg;
+	}
+}

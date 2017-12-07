@@ -1,0 +1,126 @@
+{% extends "skeletons/default.njk" %}
+
+{% set volume = issue.volume %}
+{% set publisher = volume.publisher %}
+
+{% block header %}
+	<header class="banner-header" style="background-image: url({{ issue.image.screen_url | replace(comicvineURL, '') }});">
+		<div class="header-content">
+			<!-- Back Arrow -->
+			<a class="arrow-left" href="{{ referer or "/profile" }}"><i data-feather="arrow-left"></i></a>
+	    	<!-- Search Button / Trigger -->
+	    	<a href="#" class="icon search-icon"><i data-feather="search"></i></a>
+	    	<!-- Profile Link -->
+	    	<a href="/profile" class="icon profile-icon"><i data-feather="user"></i></a>
+		</div>
+		<div class="banner-titles">
+			<!-- Issue Title -->
+			<h1>{{ issue.name }}</h1>
+			<!-- Volume -->
+			<a href="#" class="volume">{{ volume.name }} {{ volume.deck }}</a>
+			<!-- Publish Date -->
+			<span class="publish-date">{{ volume.start_year }}</span>
+			<!-- Publisher -->
+			<span class="publisher">{{ publisher.name }}</span>
+		</div>
+	</header>
+	{% include "components/status-bar.njk" %}
+{% endblock %}
+
+{% block main %}
+	<!-- List of Issues in a Volume -->
+	<div class="volume-issue-list">
+		<!-- Comic -->
+		<div class="comic">
+			<div class="issue-row">
+				<a class="issue-number" href="#">
+					#143
+				</a>
+				<div class="issue-title-and-credits">
+					<div class="issue-title">
+						<a href="#">Title</a>
+					</div>
+					<div class="issue-credits">
+						<span>Dave MacFarland</span>
+						<span>James Franco</span>
+					</div>
+				</div>
+				<div class="issue-status-container">
+					<!-- Add to Wish List Button -->
+					<a href="#"><i data-feather="heart"></i></a>
+					<!-- Add to Collection Button -->
+					<a href="#"><i data-feather="check-circle"></i></a>
+				</div>
+			</div>
+		</div>
+		<!-- Comic -->
+		<div class="comic">
+			<div class="issue-row">
+				<a class="issue-number" href="#">
+					#143
+				</a>
+				<div class="issue-title-and-credits">
+					<div class="issue-title">
+						<a href="#">Title</a>
+					</div>
+					<div class="issue-credits">
+						<span>Dave MacFarland</span>
+						<span>James Franco</span>
+					</div>
+				</div>
+				<div class="issue-status-container">
+					<!-- Add to Wish List Button -->
+					<a href="#"><i data-feather="heart"></i></a>
+					<!-- Add to Collection Button -->
+					<a href="#"><i data-feather="check-circle"></i></a>
+				</div>
+			</div>
+		</div>
+		<!-- Comic -->
+		<div class="comic">
+			<div class="issue-row">
+				<a class="issue-number" href="#">
+					#143
+				</a>
+				<div class="issue-title-and-credits">
+					<div class="issue-title">
+						<a href="#">Title</a>
+					</div>
+					<div class="issue-credits">
+						<span>Dave MacFarland</span>
+						<span>James Franco</span>
+					</div>
+				</div>
+				<div class="issue-status-container">
+					<!-- Add to Wish List Button -->
+					<a href="#" class="do-want"><i data-feather="heart"></i></a>
+					<!-- Add to Collection Button -->
+					<a href="#"><i data-feather="check-circle"></i></a>
+				</div>
+			</div>
+		</div>
+		<!-- Comic -->
+		<div class="comic">
+			<div class="issue-row">
+				<a class="issue-number" href="#">
+					#143
+				</a>
+				<div class="issue-title-and-credits">
+					<div class="issue-title">
+						<a href="#">Title</a>
+					</div>
+					<div class="issue-credits">
+						<span>Dave MacFarland</span>
+						<span>James Franco</span>
+					</div>
+				</div>
+				<div class="issue-status-container">
+					<!-- Add to Wish List Button -->
+					<a href="#"><i data-feather="heart"></i></a>
+					<!-- Add to Collection Button -->
+					<a href="#" class="do-have"><i data-feather="check-circle"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
