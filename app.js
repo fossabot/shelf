@@ -26,12 +26,14 @@ env.addFilter('date', dateFilter);
 const routes = {
 	index: require(path.join(__dirname, 'routes/index'))(config),
 	issue: require(path.join(__dirname, 'routes/issue'))(config),
+	volume: require(path.join(__dirname, 'routes/volume'))(config),
 	profile: require(path.join(__dirname, 'routes/profile'))(config),
 	imageCache: require(path.join(__dirname, 'routes/imageCache'))(config),
 	error: require(path.join(__dirname, 'routes/error'))(config)
 };
 app.use('/', routes.index);
 app.use('/issue', routes.issue);
+app.use('/volume', routes.volume);
 app.use('/profile', routes.profile);
 app.use('/image', routes.imageCache);
 app.use('/error', routes.error);
