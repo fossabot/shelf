@@ -1,18 +1,22 @@
 module.exports = (config) => {
 	// Required modules
 	const express	= require('express');
-	const mongojs	= require('mongojs');
+	const mongoose	= require('mongoose');
+	const path			= require('path');
+	const Volume			= require(path.join(config.baseDir, 'models/comic/volume.js'));
 
 	// Connect to the db
-	const connection = config.database.host + ':' + config.database.port + '/' + config.database.name;
-	const db = mongojs(connection);
+	mongoose.Promise = require('bluebird');
+	mongoose.connect('mongodb://' + config.database.host + ':' + config.database.port + '/' + config.database.name, {
+		useMongoClient: true
+	});
 
 	// Create our router
 	const router = express.Router();
 
 	router.get('/:volumeID', (req, res) => {
 		const id = Number(req.params.volumeID);
-		db.volumes.aggregate([
+		Volume.aggregate([
 			{
 				$match: {
 					id
@@ -39,7 +43,7 @@ module.exports = (config) => {
 					as: 'issues'
 				}
 			}
-		], (err, volume) => {
+		]).exec((err, volume) => {
 			if (err || volume.length < 1) {
 				if (err) console.error(err);
 				res.render('pages/error.njk', {
