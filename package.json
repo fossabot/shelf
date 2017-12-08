@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "async": "^2.6.0",
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.1",
+    "connect-flash": "^0.1.1",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "feather-icons": "^3.3.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -24,6 +27,11 @@
     "nodemon": "^1.12.1",
     "nunjucks": "^3.0.0",
     "nunjucks-date-filter": "^0.1.1",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "pump": "^2.0.0",
     "request": "^2.83.0"
   },

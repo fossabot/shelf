@@ -7,6 +7,9 @@ const gulp				= require('gulp');
 const concat			= require('gulp-concat');
 const minify			= require('gulp-minify');
 const pump				= require('pump');
+const passport		= require('passport');
+const flash				= require('connect-flash');
+const session			= require('express-session');
 
 // Create our application
 const app = express();
@@ -42,12 +45,22 @@ pump([
 	gulp.dest(path.join(__dirname, 'public/js'))
 ]);
 
+// Passport
+require(path.join(__dirname, 'modules/passport'))(config, passport);
+app.use(session({
+	secret: 'aintnobodybetterthanspiderman'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
 // Routes
 const routes = {
 	index: require(path.join(__dirname, 'routes/index'))(config),
 	issue: require(path.join(__dirname, 'routes/issue'))(config),
 	volume: require(path.join(__dirname, 'routes/volume'))(config),
 	profile: require(path.join(__dirname, 'routes/profile'))(config),
+	auth: require(path.join(__dirname, 'routes/auth'))(config, passport),
 	imageCache: require(path.join(__dirname, 'routes/imageCache'))(config),
 	error: require(path.join(__dirname, 'routes/error'))(config)
 };
@@ -55,6 +68,7 @@ app.use('/', routes.index);
 app.use('/issue', routes.issue);
 app.use('/volume', routes.volume);
 app.use('/profile', routes.profile);
+app.use('/auth', routes.auth);
 app.use('/image', routes.imageCache);
 app.use('/error', routes.error);
 app.use(/.*/, routes.error);	// MUST BE LAST!!!
