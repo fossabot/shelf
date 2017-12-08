@@ -32,7 +32,8 @@ module.exports = (config) => {
 			// We have to make the directory if it doesn't exist
 			// So first, determine the directory
 			const imageFolder = path.join(__dirname, '../public' + req.url.replace(/\/[^/]+$/, ''));
-			const imagePath = path.join(__dirname, '../public' + req.url);
+			const imagePath = path.join(__dirname, '../public' + decodeURIComponent(req.url));
+
 			fs.access(imageFolder, (err) => {
 				if (!err) {
 					// Directory exists, so let's just put the image there

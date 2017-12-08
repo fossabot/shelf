@@ -3,6 +3,10 @@ const express			= require('express');
 const nunjucks		= require('nunjucks');
 const dateFilter	= require('nunjucks-date-filter');
 const path				= require('path');
+const gulp				= require('gulp');
+const concat			= require('gulp-concat');
+const minify			= require('gulp-minify');
+const pump				= require('pump');
 
 // Create our application
 const app = express();
@@ -22,16 +26,31 @@ const env = nunjucks.configure('views', {
 });
 env.addFilter('date', dateFilter);
 
+// Minify our scripts
+pump([
+	gulp.src(path.join(__dirname, 'scripts/**/*.js')),
+	concat('main.js'),
+	minify({
+		ext: {
+			src: '.js',
+			min: '.min.js'
+		}
+	}),
+	gulp.dest(path.join(__dirname, 'public/js'))
+]);
+
 // Routes
 const routes = {
 	index: require(path.join(__dirname, 'routes/index'))(config),
 	issue: require(path.join(__dirname, 'routes/issue'))(config),
+	volume: require(path.join(__dirname, 'routes/volume'))(config),
 	profile: require(path.join(__dirname, 'routes/profile'))(config),
 	imageCache: require(path.join(__dirname, 'routes/imageCache'))(config),
 	error: require(path.join(__dirname, 'routes/error'))(config)
 };
 app.use('/', routes.index);
 app.use('/issue', routes.issue);
+app.use('/volume', routes.volume);
 app.use('/profile', routes.profile);
 app.use('/image', routes.imageCache);
 app.use('/error', routes.error);

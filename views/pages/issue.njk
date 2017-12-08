@@ -15,9 +15,16 @@
 		</div>
 		<div class="banner-titles">
 			<!-- Issue Title -->
-			<h1>{{ issue.name }}</h1>
+			<h1>
+				{% if issue.name %}
+					{{ issue.name }}
+				{% else %}
+					{{ volume.name }} #{{ issue.issue_number }}
+				{% endif %}
+			</h1>
 			<!-- Volume -->
-			<a href="#" class="volume">{{ volume.name }} {{ volume.deck }}</a>
+			{% set deckLength = volume.deck | length %}
+			<a href="/volume/{{ volume.id }}" class="volume">{{ volume.name }} {{ volume.deck | truncate(deckLength - 1, true, "" )}}</a>
 			<!-- Publish Date -->
 			<span class="publish-date">{{ volume.start_year }}</span>
 			<!-- Publisher -->
