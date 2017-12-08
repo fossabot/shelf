@@ -1,11 +1,15 @@
 module.exports = (config) => {
 	// Needed modules
-	const express	= require('express');
-	const mongojs	= require('mongojs');
+	const express		= require('express');
+	const mongoose	= require('mongoose');
+	const path			= require('path');
+	const Issue			= require(path.join(config.baseDir, 'models/comic/issue.js'));
 
 	// Connect to the db
-	const connection = config.database.host + ':' + config.database.port + '/' + config.database.name;
-	const db = mongojs(connection);
+	mongoose.Promise = require('bluebird');
+	mongoose.connect('mongodb://' + config.database.host + ':' + config.database.port + '/' + config.database.name, {
+		useMongoClient: true
+	});
 
 	// Create our router
 	const router = express.Router();
@@ -15,7 +19,7 @@ module.exports = (config) => {
 		// Convert the ID to an actual number
 		const issueID = Number(req.params.id);
 		// Then do our lookup
-		db.issues.aggregate([
+		Issue.aggregate([
 			// First, just find the issue
 			{
 				$match: {
@@ -52,7 +56,7 @@ module.exports = (config) => {
 					path: '$volume.publisher'
 				}
 			}
-		], (err, issue) => {
+		]).exec((err, issue) => {
 			if (err || issue.length < 1) {
 				res.render('pages/error.njk', {
 					site: config.site,

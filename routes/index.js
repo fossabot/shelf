@@ -1,21 +1,26 @@
 module.exports = (config) => {
 	// Needed modules
-	const express	= require('express');
-	const mongojs	= require('mongojs');
+	const express		= require('express');
+	const mongoose	= require('mongoose');
+	const path			= require('path');
+	const Issue			= require(path.join(config.baseDir, 'models/comic/issue.js'));
 
 	// Connect to the db
-	const db = mongojs(config.database.host + ':' + config.database.port + '/' + config.database.name);
+	mongoose.Promise = require('bluebird');
+	mongoose.connect('mongodb://' + config.database.host + ':' + config.database.port + '/' + config.database.name, {
+		useMongoClient: true
+	});
 
 	// Create our router
 	const router = express.Router();
 
 	// Our home route
 	router.get('/', (req, res) => {
-		db.issues.find({}).limit(15, (err, docs) => {
+		Issue.find({}).limit(15).exec((err, issues) => {
 			if (err) console.error(err);
 			res.render('index.njk', {
 				site: config.site,
-				issues: docs,
+				issues,
 				comicvineURL: config.api.comicvine.url.base
 			});
 		});

@@ -13,10 +13,13 @@ const app = express();
 
 // Load site and package config
 const config = require(path.join(__dirname, 'config.json'));
+config.baseDir = __dirname;
 config.site.package = require(path.join(__dirname, 'package.json'));
 
 // Turn on public folder
-app.use(express.static('public', {index: false}));
+app.use(express.static('public', {
+	index: false
+}));
 
 // Get nunjucks going
 const env = nunjucks.configure('views', {

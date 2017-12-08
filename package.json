@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "async": "^2.6.0",
+    "bluebird": "^3.5.1",
     "express": "^4.16.2",
     "feather-icons": "^3.3.0",
     "gulp": "^3.9.1",
@@ -18,7 +19,7 @@
     "gulp-minify": "^2.1.0",
     "mime": "^2.0.3",
     "mkdirp": "^0.5.1",
-    "mongojs": "^2.4.1",
+    "mongoose": "^4.13.6",
     "node-sass": "^4.7.2",
     "nodemon": "^1.12.1",
     "nunjucks": "^3.0.0",
