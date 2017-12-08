@@ -1,10 +1,10 @@
 {% extends "skeletons/default.njk" %}
 
-{% set volume = issue.volume %}
 {% set publisher = volume.publisher %}
+{% set issues = volume.issues %}
 
 {% block header %}
-	<header class="banner-header" style="background-image: url({{ issue.image.screen_url | replace(comicvineURL, '') }});">
+	<header class="banner-header" style="background-image: url({{ volume.image.screen_url | replace(comicvineURL, '') }});">
 		<div class="header-content">
 			<!-- Back Arrow -->
 			<a class="arrow-left" href="{{ referer or "/profile" }}"><i data-feather="arrow-left"></i></a>
@@ -15,9 +15,12 @@
 		</div>
 		<div class="banner-titles">
 			<!-- Issue Title -->
-			<h1>{{ issue.name }}</h1>
-			<!-- Volume -->
-			<a href="#" class="volume">{{ volume.name }} {{ volume.deck }}</a>
+			<h1>{{ volume.name }}</h1>
+			{% if volume.deck %}
+				<!-- Volume -->
+				{% set deckLength = volume.deck | length %}
+				<a href="#" class="volume">{{ volume.name }} {{ volume.deck | truncate(deckLength - 1, true, "" )}}</a>
+			{% endif %}
 			<!-- Publish Date -->
 			<span class="publish-date">{{ volume.start_year }}</span>
 			<!-- Publisher -->
@@ -30,97 +33,34 @@
 {% block main %}
 	<!-- List of Issues in a Volume -->
 	<div class="volume-issue-list">
-		<!-- Comic -->
-		<div class="comic">
-			<div class="issue-row">
-				<a class="issue-number" href="#">
-					#143
-				</a>
-				<div class="issue-title-and-credits">
-					<div class="issue-title">
-						<a href="#">Title</a>
+		{% for issue in issues | sort(false, false, 'cover_date') %}
+			<!-- Comic -->
+			<div class="comic">
+				<div class="issue-row">
+					<a class="issue-number" href="/issue/{{ issue.id }}">#{{ issue.issue_number }}</a>
+					<div class="issue-title-and-credits">
+						{% if issue.name %}
+							<div class="issue-title">
+								<a href="/issue/{{ issue.id }}">{{ issue.name }}</a>
+							</div>
+						{% endif %}
+						<div class="issue-credits">
+							{% set roleRgx = r/writer|artist|penciler/ %}
+							{% for person in issue.person_credits %}
+								{% if roleRgx.test(person.role) %}
+									<span>{{ person.name }}</span>
+								{% endif %}
+							{% endfor %}
+						</div>
 					</div>
-					<div class="issue-credits">
-						<span>Dave MacFarland</span>
-						<span>James Franco</span>
+					<div class="issue-status-container">
+						<!-- Add to Wish List Button -->
+						<a href="#"><i data-feather="heart"></i></a>
+						<!-- Add to Collection Button -->
+						<a href="#"><i data-feather="check-circle"></i></a>
 					</div>
-				</div>
-				<div class="issue-status-container">
-					<!-- Add to Wish List Button -->
-					<a href="#"><i data-feather="heart"></i></a>
-					<!-- Add to Collection Button -->
-					<a href="#"><i data-feather="check-circle"></i></a>
 				</div>
 			</div>
-		</div>
-		<!-- Comic -->
-		<div class="comic">
-			<div class="issue-row">
-				<a class="issue-number" href="#">
-					#143
-				</a>
-				<div class="issue-title-and-credits">
-					<div class="issue-title">
-						<a href="#">Title</a>
-					</div>
-					<div class="issue-credits">
-						<span>Dave MacFarland</span>
-						<span>James Franco</span>
-					</div>
-				</div>
-				<div class="issue-status-container">
-					<!-- Add to Wish List Button -->
-					<a href="#"><i data-feather="heart"></i></a>
-					<!-- Add to Collection Button -->
-					<a href="#"><i data-feather="check-circle"></i></a>
-				</div>
-			</div>
-		</div>
-		<!-- Comic -->
-		<div class="comic">
-			<div class="issue-row">
-				<a class="issue-number" href="#">
-					#143
-				</a>
-				<div class="issue-title-and-credits">
-					<div class="issue-title">
-						<a href="#">Title</a>
-					</div>
-					<div class="issue-credits">
-						<span>Dave MacFarland</span>
-						<span>James Franco</span>
-					</div>
-				</div>
-				<div class="issue-status-container">
-					<!-- Add to Wish List Button -->
-					<a href="#" class="do-want"><i data-feather="heart"></i></a>
-					<!-- Add to Collection Button -->
-					<a href="#"><i data-feather="check-circle"></i></a>
-				</div>
-			</div>
-		</div>
-		<!-- Comic -->
-		<div class="comic">
-			<div class="issue-row">
-				<a class="issue-number" href="#">
-					#143
-				</a>
-				<div class="issue-title-and-credits">
-					<div class="issue-title">
-						<a href="#">Title</a>
-					</div>
-					<div class="issue-credits">
-						<span>Dave MacFarland</span>
-						<span>James Franco</span>
-					</div>
-				</div>
-				<div class="issue-status-container">
-					<!-- Add to Wish List Button -->
-					<a href="#"><i data-feather="heart"></i></a>
-					<!-- Add to Collection Button -->
-					<a href="#" class="do-have"><i data-feather="check-circle"></i></a>
-				</div>
-			</div>
-		</div>
+		{% endfor %}
 	</div>
 {% endblock %}
