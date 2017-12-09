@@ -1,6 +1,10 @@
 {
 	"site": {
-		"title": "shelf"
+		"title": "shelf",
+		"admin": {
+			"name": "J. Jonah Jameson",
+			"email": "jonah@thedailybugle.com"
+		}
 	},
 	"port": {
 		"prod": 8080,
@@ -11,6 +15,7 @@
 		"port": "27017",
 		"name": "shelf"
 	},
+	"sessionSecret": "[YOUR SECRET HERE]",
 	"api": {
 		"comicvine": {
 			"key": "[INSERT YOUR KEY HERE]",
@@ -21,6 +26,34 @@
 				]
 			},
 			"userAgent": "[YOUR UNIQUE USER AGENT]"
+		}
+	},
+	"auth": {
+		"google": {
+			"client_id":	"",
+			"project_id":	"",
+			"auth_uri":	"https://accounts.google.com/o/oauth2/auth",
+			"token_uri":	"https://accounts.google.com/o/oauth2/token",
+			"auth_provider_x509_cert_url":	"https://www.googleapis.com/oauth2/v1/certs",
+			"client_secret":	"",
+			"redirect_uri":	"",
+			"javascript_origin":	""
+		},
+		"facebook": {
+			"clientID": "",
+			"clientSecret": "",
+			"callbackURL": "",
+			"profileURL": "https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email",
+			"profileFields": [
+				"id",
+				"email",
+				"name"
+			]
+		},
+		"twitter": {
+			"consumerKey": "",
+			"consumerSecret": "",
+			"callbackURL": ""
 		}
 	},
 	"devMode": false

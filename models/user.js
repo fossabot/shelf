@@ -5,6 +5,7 @@ const bcrypt		= require('bcrypt-nodejs');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+	'type': String,
 	'local': {
 		'email': String,
 		'password': String
@@ -33,7 +34,9 @@ userSchema.methods.generateHash = (password) => {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-userSchema.methods.validPassword = (password) => {
+// Really hate that this isn't an arrow function, but it has to be
+// https://derickbailey.com/2015/09/28/do-es6-arrow-functions-really-solve-this-in-javascript/
+userSchema.methods.validPassword = function (password) {
 	return bcrypt.compareSync(password, this.local.password);
 };
 
