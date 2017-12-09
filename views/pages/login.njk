@@ -5,14 +5,36 @@
 		<div class="login-container">
 				<div class="login-flex">
 					<span class="title">Log In</span>
-					<form>
+					{% if messages | length > 0 %}
+						<p class="error-message" style="color: red;">
+							{% for message in messages %}
+								<span>{{ message }}</span><br />
+							{% endfor %}
+						</p>
+					{% endif %}
+					<form action="/profile/login" method="post">
 						<label>Email
-							<input type="email" placeholder="name@example.com" required />
+							<input type="email" name="email" placeholder="name@example.com" required />
 						</label>
 						<label>Password
-							<input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
+							<input type="password" name="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
 						</label>
 						<a class="register-link" href="/register">Don't have an account? Create one now.</a>
+						<p>---OR---</p>
+						<p>
+							<span>Sign in using:</span>
+							<ul>
+								<li>
+									<a href="/auth/google">Google</a>
+								</li>
+								<li>
+									<a href="/auth/twitter">Twitter</a><br />
+								</li>
+								<li>
+									<a href="/auth/facebook">Facebook</a><br />
+								</li>
+							</ul>
+						</p>
 						<input type="submit" value="Login" />
 					</form>
 				</div>

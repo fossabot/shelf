@@ -7,14 +7,20 @@
 		<!-- My Account Section -->
 		<h2>My Account</h2>
 		<div class="account-container">
+			<div class="name">
+				<span class="account-detail strong">Name:</span>
+				<span class="account-detail">{{ user.name or user.displayName }}</span>
+			</div>
 			<div class="email">
 				<span class="account-detail strong">Email:</span>
-				<span class="account-detail">billclinton@yahoo.com</span>
+				<span class="account-detail">{{ user.email }}</span>
 			</div>
 			<div class="password">
 				<span class="account-detail strong">Password:</span>
 				<span class="account-detail"><a href="#">Change Password</a></span>
 			</div>
+			{# Logout #}
+			<a class="hollow-button" href="/profile/logout">Logout</a>
 			<!-- Delete Account -->
 			<a class="hollow-button" href="#">Delete Account</a>
 		</div>
