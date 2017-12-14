@@ -1,4 +1,6 @@
 # Shelf
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgabeotisbenson%2Fshelf.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgabeotisbenson%2Fshelf?ref=badge_shield)
+
 An open source comic book collection management app.
 
 ## Setup
@@ -43,3 +45,7 @@ Then visit [localhost:3000](http://localhost:3000) in your browser
 ```bash
 gulp
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgabeotisbenson%2Fshelf.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgabeotisbenson%2Fshelf?ref=badge_large)
